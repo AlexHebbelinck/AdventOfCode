@@ -1,0 +1,15 @@
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.csproj.AssemblyReference.cache
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.AssemblyInfoInputs.cache
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.AssemblyInfo.cs
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.csproj.CoreCompileInputs.cache
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\DailyCode.deps.json
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\DailyCode.dll
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\ref\DailyCode.dll
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\DailyCode.pdb
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.dll
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\ref\DailyCode.dll
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.pdb
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\Common.dll
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\bin\Debug\net6.0\Common.pdb
+C:\Users\AlexH\source\repos\AdventOfCode\DailyCode\obj\Debug\net6.0\DailyCode.csproj.CopyComplete
