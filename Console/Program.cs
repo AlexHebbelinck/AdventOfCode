@@ -2,16 +2,18 @@
 using Common.Helpers;
 using Microsoft.Extensions.Configuration;
 using System.Text.RegularExpressions;
+using ConsoleApp;
 
 var startupCfg = new ConfigurationBuilder()
 			.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
 			.AddUserSecrets<Program>()
 			.Build();
 
+
 Console.WriteLine("Commands:");
 var commands = Console.ReadLine();
-
-int? year = null;
+CommandPromptHandler.Instance.DoSomething(commands);
+int ? year = null;
 uint? day = null;
 uint? part = null;
 bool? useTestData = null;
