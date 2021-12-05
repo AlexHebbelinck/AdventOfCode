@@ -1,5 +1,5 @@
 ﻿using Common.Helpers;
-using ConsoleApp;
+using ConsoleApp.Commands;
 using DailyCode;
 using Microsoft.Extensions.Configuration;
 
@@ -11,8 +11,8 @@ var startupCfg = new ConfigurationBuilder()
 while (true)
 {
     Console.Write("Commands: ");
-    var class1 = CommandPromptHandler.Instance.DoSomething(Console.ReadLine());
-    var config = await AdventConfigHelper.Instance.GetAdventConfig(class1);
+    var commandAdventConfigActions = CommandPromptHandler.Instance.DoSomething(Console.ReadLine());
+    var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
 
     DaySelector.Instance.Initialize(config, startupCfg.GetSection("sessionId").Value);
 
@@ -21,4 +21,3 @@ while (true)
 
     Console.Write("\n \n");
 }
-

@@ -18,19 +18,19 @@ namespace Common.Helpers
         {
         }
 
-        public async Task<AdventConfig> GetAdventConfig(Class1 class1)
+        public async Task<AdventConfig> GetAdventConfig(List<CommandAdventConfigAction> CommandAdventConfigAction)
         {
             return !File.Exists(_filePath)
-                ? await GetNewConfig(class1)
-                : await GetExistingConfig(class1);
+                ? await GetNewConfig(CommandAdventConfigAction)
+                : await GetExistingConfig(CommandAdventConfigAction);
         }
 
-        private AdventConfig SetupConfigModel(Class1 class1)
-            => UpdateConfigModel(new() { Year =  _year, Day = 1, Part =  1, UseTestData = false }, class1);
+        private AdventConfig SetupConfigModel(List<CommandAdventConfigAction> CommandAdventConfigAction)
+            => UpdateConfigModel(new() { Year =  _year, Day = 1, Part =  1, UseTestData = false }, CommandAdventConfigAction);
 
-        private async Task<AdventConfig> GetNewConfig(Class1 class1)
+        private async Task<AdventConfig> GetNewConfig(List<CommandAdventConfigAction> CommandAdventConfigAction)
         {
-            var config = SetupConfigModel(class1);
+            var config = SetupConfigModel(CommandAdventConfigAction);
             using var fs = File.Create(_filePath);
             fs.Close();
 
@@ -39,27 +39,25 @@ namespace Common.Helpers
             return config;
         }
 
-        private async Task<AdventConfig> GetExistingConfig(Class1 class1)
+        private async Task<AdventConfig> GetExistingConfig(List<CommandAdventConfigAction> CommandAdventConfigAction)
         {
             using var fs = File.OpenRead(_filePath);
-            var config = await JsonSerializer.DeserializeAsync<AdventConfig>(fs) ?? SetupConfigModel(class1);
+            var config = await JsonSerializer.DeserializeAsync<AdventConfig>(fs) ?? SetupConfigModel(CommandAdventConfigAction);
             fs.Close();
 
-            config = UpdateConfigModel(config, class1);
+            config = UpdateConfigModel(config, CommandAdventConfigAction);
 
             await File.WriteAllTextAsync(_filePath, JsonSerializer.Serialize(config));
 
             return config;
         }
 
-        private AdventConfig UpdateConfigModel(AdventConfig config, Class1 class1)
+        private AdventConfig UpdateConfigModel(AdventConfig config, List<CommandAdventConfigAction> commandAdventConfigAction)
         {
+            //We do not get year from cfg file, so making sure it is filled in here.
             config.Year = _year;
 
-            foreach(var action in class1.ActionList)
-            {
-                action.Action(config, action.Value);
-            }
+            commandAdventConfigAction.ForEach(x => x.Action(config, x.Value));
 
             return config;
         }
