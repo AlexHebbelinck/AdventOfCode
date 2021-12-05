@@ -1,4 +1,5 @@
-﻿using Common.Model;
+﻿using AutoMapper;
+using Common.Model;
 using System.Text.Json;
 
 namespace Common.Helpers
@@ -18,19 +19,19 @@ namespace Common.Helpers
         {
         }
 
-        public async Task<AdventConfig> GetAdventConfig(int? overrideYear, uint? overrideDay, uint? overridePart, bool? useTestData)
+        public async Task<AdventConfig> GetAdventConfig(Class1 class1)
         {
             return !File.Exists(_filePath)
-                ? await GetNewConfig(overrideYear, overrideDay, overridePart, useTestData)
-                : await GetExistingConfig(overrideYear, overrideDay, overridePart, useTestData);
+                ? await GetNewConfig(class1)
+                : await GetExistingConfig(class1);
         }
 
-        private AdventConfig SetupConfigModel(int? overrideYear, uint? overrideDay, uint? overridePart, bool? useTestData)
-            => new() { Year = overrideYear ?? _year, Day = overrideDay ?? 1, Part = overridePart ?? 1, UseTestData = useTestData ?? false };
+        private AdventConfig SetupConfigModel(Class1 class1)
+            => UpdateConfigModel(new() { Year =  _year, Day = 1, Part =  1, UseTestData = false }, class1);
 
-        private async Task<AdventConfig> GetNewConfig(int? overrideYear, uint? overrideDay, uint? overridePart, bool? useTestData)
+        private async Task<AdventConfig> GetNewConfig(Class1 class1)
         {
-            var config = SetupConfigModel(overrideYear, overrideDay, overridePart, useTestData);
+            var config = SetupConfigModel(class1);
             using var fs = File.Create(_filePath);
             fs.Close();
 
@@ -39,25 +40,27 @@ namespace Common.Helpers
             return config;
         }
 
-        private async Task<AdventConfig> GetExistingConfig(int? overrideYear, uint? overrideDay, uint? overridePart, bool? useTestData)
+        private async Task<AdventConfig> GetExistingConfig(Class1 class1)
         {
             using var fs = File.OpenRead(_filePath);
-            var config = await JsonSerializer.DeserializeAsync<AdventConfig>(fs) ?? SetupConfigModel(overrideYear, overrideDay, overridePart, useTestData);
+            var config = await JsonSerializer.DeserializeAsync<AdventConfig>(fs) ?? SetupConfigModel(class1);
             fs.Close();
 
-            config = UpdateConfigModel(config, overrideYear, overrideDay, overridePart, useTestData);
+            config = UpdateConfigModel(config, class1);
 
             await File.WriteAllTextAsync(_filePath, JsonSerializer.Serialize(config));
 
             return config;
         }
 
-        private AdventConfig UpdateConfigModel(AdventConfig config, int? overrideYear, uint? overrideDay, uint? overridePart, bool? useTestData)
+        private AdventConfig UpdateConfigModel(AdventConfig config, Class1 class1)
         {
-            config.Day = overrideDay ?? config.Day;
-            config.Part = overridePart ?? config.Part;
-            config.Year = overrideYear ?? _year;
-            config.UseTestData = useTestData ?? config.UseTestData;
+            config.Year = _year;
+
+            foreach(var action in class1.ActionList)
+            {
+                action.Action(config, action.Value);
+            }
 
             return config;
         }

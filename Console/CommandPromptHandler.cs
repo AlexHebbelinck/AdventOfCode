@@ -1,4 +1,5 @@
-﻿using ConsoleApp.Commands;
+﻿using Common.Model;
+using ConsoleApp.Commands;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp
@@ -18,8 +19,9 @@ namespace ConsoleApp
         {
         }
 
-        public void DoSomething(string? commands)
+        public Class1 DoSomething(string? commands)
         {
+            var b = new Class1();
             if (!string.IsNullOrWhiteSpace(commands))
             {
                 var matches = AllCommandsRgx.Matches(commands);
@@ -32,10 +34,12 @@ namespace ConsoleApp
                     else
                     {
                         var cmdPrompt = FuncCommandPrompt.FindBy(match.Groups[2].Value);
-                       var whereTheFuckDoIReturnThis = Convert.ChangeType(cmdPrompt.Func(match.Groups[3].Value), cmdPrompt.CastTo);
+                        b.ActionList.Add(new Class2 { Action = cmdPrompt.Action, Value = match.Groups[3].Value });
                     }
                 }
             }
+
+            return b;
         }
     }
 }

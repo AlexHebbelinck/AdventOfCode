@@ -1,35 +1,24 @@
-﻿using DailyCode;
-using Common.Helpers;
-using Microsoft.Extensions.Configuration;
-using System.Text.RegularExpressions;
+﻿using Common.Helpers;
 using ConsoleApp;
+using DailyCode;
+using Microsoft.Extensions.Configuration;
 
 var startupCfg = new ConfigurationBuilder()
-			.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-			.AddUserSecrets<Program>()
-			.Build();
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddUserSecrets<Program>()
+            .Build();
 
-
-Console.WriteLine("Commands:");
-var commands = Console.ReadLine();
-CommandPromptHandler.Instance.DoSomething(commands);
-int ? year = null;
-uint? day = null;
-uint? part = null;
-bool? useTestData = null;
-
-if (!string.IsNullOrWhiteSpace(commands))
+while (true)
 {
-	year = Regex.IsMatch(commands, @"-y *?(\d+)") ? int.Parse(Regex.Match(commands, @"-y *?(\d+)").Groups[1].Value) : (int?)null;
-	day = Regex.IsMatch(commands, @"-d *?(\d+)") ? uint.Parse(Regex.Match(commands, @"-d *?(\d+)").Groups[1].Value) : (uint?)null;
-	part = Regex.IsMatch(commands, @"-p *?(\d+)") ? uint.Parse(Regex.Match(commands, @"-p *?(\d+)").Groups[1].Value) : (uint?)null;
-	useTestData = Regex.IsMatch(commands, @"-t *?(\d+)") ? Convert.ToBoolean(int.Parse(Regex.Match(commands, @"-t *?(\d+)").Groups[1].Value)) : (bool?)null;
+    Console.Write("Commands: ");
+    var class1 = CommandPromptHandler.Instance.DoSomething(Console.ReadLine());
+    var config = await AdventConfigHelper.Instance.GetAdventConfig(class1);
+
+    DaySelector.Instance.Initialize(config, startupCfg.GetSection("sessionId").Value);
+
+    Console.Write("Output: ");
+    Console.WriteLine(await DaySelector.Instance.Run());
+
+    Console.Write("\n \n");
 }
-
-var config = await AdventConfigHelper.Instance.GetAdventConfig(year,day,part, useTestData);
-
-DaySelector.Instance.Initialize(config, startupCfg.GetSection("sessionId").Value);
-
-Console.WriteLine("Output:");
-Console.WriteLine(await DaySelector.Instance.Run());
 
