@@ -17,7 +17,7 @@ namespace ConsoleApp.Commands
         {
         }
 
-        public List<CommandAdventConfigAction> DoSomething(string? commands)
+        public List<CommandAdventConfigAction> GetCommands(string? commands)
         {
             var commandAdventConfigActions = new List<CommandAdventConfigAction>();
             if (!string.IsNullOrWhiteSpace(commands))

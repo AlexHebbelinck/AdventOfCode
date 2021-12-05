@@ -54,11 +54,7 @@ namespace Common.Helpers
 
         private AdventConfig UpdateConfigModel(AdventConfig config, List<CommandAdventConfigAction> commandAdventConfigAction)
         {
-            //We do not get year from cfg file, so making sure it is filled in here.
-            config.Year = _year;
-
             commandAdventConfigAction.ForEach(x => x.Action(config, x.Value));
-
             return config;
         }
     }

@@ -14,7 +14,7 @@ namespace DailyCode.Year2021.Days
 
         protected override void ExtractData(List<string> fileInput)
         {
-            foreach (var line in fileInput.Where(x => !string.IsNullOrWhiteSpace(x)))
+            foreach (var line in fileInput)
             {
                 var match = Regex.Match(line, @"(\d+),(\d+) -> (\d+),(\d+)");
                 LinesCoordinates.Add(new LineCoordinates

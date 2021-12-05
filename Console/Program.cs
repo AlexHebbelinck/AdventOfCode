@@ -8,10 +8,10 @@ var startupCfg = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
 
-while (true)
-{
+//while (true)
+//{
     Console.Write("Commands: ");
-    var commandAdventConfigActions = CommandPromptHandler.Instance.DoSomething(Console.ReadLine());
+    var commandAdventConfigActions = CommandPromptHandler.Instance.GetCommands(Console.ReadLine());
     var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
 
     DaySelector.Instance.Initialize(config, startupCfg.GetSection("sessionId").Value);
@@ -20,4 +20,7 @@ while (true)
     Console.WriteLine(await DaySelector.Instance.Run());
 
     Console.Write("\n \n");
-}
+
+//currently issue with running in while loop, will fix later
+Console.ReadLine();
+//}

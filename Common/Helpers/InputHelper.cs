@@ -31,10 +31,15 @@ namespace Common.Helpers
             if (!File.Exists(fileLocation))
                 await DownloadInput(fileLocation, sessionId, config);
 
-            return (await File.ReadAllTextAsync(fileLocation))
+            var input = (await File.ReadAllTextAsync(fileLocation))
                 .Split(new[] { '\n' })
                 .Select(i => i.Trim())
                 .ToList();
+
+            //Last entry is always empty...
+            input.RemoveAt(input.Count - 1);
+
+            return input;
         }
 
         private async Task DownloadInput(string fileLocation, string sessionId, AdventConfig config)

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Common.Helpers;
+using System.Text.Json.Serialization;
 
 namespace Common.Models
 {
@@ -10,6 +11,6 @@ namespace Common.Models
         public bool UseTestData { get; set; }
 
         [JsonIgnore]
-        public int Year { get; set; }
+        public int Year { get; set; } = YearHelper.Instance.GetAoCYear();
     }
 }
