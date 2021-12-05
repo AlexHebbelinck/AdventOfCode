@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using Common.Models;
 using DailyCode.Base;
 using System.Reflection;
 using System.Text.RegularExpressions;

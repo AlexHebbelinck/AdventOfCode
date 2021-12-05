@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using Common.Models;
 using System.Net;
 
 namespace Common.Helpers
