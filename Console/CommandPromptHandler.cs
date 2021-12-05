@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using Common.Models;
 using ConsoleApp.Commands;
 using System.Text.RegularExpressions;
 

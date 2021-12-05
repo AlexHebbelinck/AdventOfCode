@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Common.Model;
+﻿using Common.Models;
 using System.Text.Json;
 
 namespace Common.Helpers

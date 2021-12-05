@@ -1,5 +1,5 @@
 ﻿using Common.Helpers;
-using Common.Model;
+using Common.Models;
 
 namespace DailyCode.Base
 {

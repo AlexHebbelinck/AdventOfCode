@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using Common.Models;
 using System.Net;
 
 namespace Common.Helpers
@@ -19,7 +19,7 @@ namespace Common.Helpers
         {
             const string? fileLocation = @"F:\Documents\AdventOfCode\TestData.txt";
             return (await File.ReadAllTextAsync(fileLocation))
-                .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new[] { '\n' })
                 .Select(i => i.Trim())
                 .ToList();
         }
@@ -32,7 +32,7 @@ namespace Common.Helpers
                 await DownloadInput(fileLocation, sessionId, config);
 
             return (await File.ReadAllTextAsync(fileLocation))
-                .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new[] { '\n' })
                 .Select(i => i.Trim())
                 .ToList();
         }
