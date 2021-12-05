@@ -64,11 +64,59 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart2()
         {
-            return "";
+            var pivotBoards = Boards.ConvertAll(board => PivotArrayToJagged(board));
+            var numbersPerRow = Boards[0][0].Length;
+            var drawnNumbers = new List<int>();
+            int[][]? losingBoard = null;
+
+            do
+            {
+                var totalNumbersDrawn = drawnNumbers.Count;
+                drawnNumbers.Add(DrawNumbers[totalNumbersDrawn]);
+
+                if (totalNumbersDrawn >= numbersPerRow)
+                {
+                    if (Boards.Count > 1)
+                    {
+                        RemoveWinningBoards(Boards, pivotBoards, drawnNumbers);
+                    }
+                    else
+                    {
+                        losingBoard = GetWinningBoard(Boards, drawnNumbers) ?? GetWinningBoard(pivotBoards, drawnNumbers);
+                    }
+                }
+            }
+            while (losingBoard == null);
+
+            var sumUnmarkedNumbers = losingBoard.SelectMany(line => line.Where(number => !drawnNumbers.Contains(number))).Sum();
+
+            return (sumUnmarkedNumbers * drawnNumbers.Last()).ToString();
         }
 
         private int[][]? GetWinningBoard(List<int[][]> boards, List<int> drawnNumbers)
             => boards.Find(board => board.Any(line => line.All(number => drawnNumbers.Contains(number))));
+
+        private List<int[][]> GetWinningBoards(List<int[][]> boards, List<int> drawnNumbers)
+            => boards.Where(board => board.Any(line => line.All(number => drawnNumbers.Contains(number)))).ToList();
+
+        private void RemoveWinningBoards(List<int[][]> boards, List<int[][]> pivotBoards, List<int> drawnNumbers)
+        {
+            var winningBoards = GetWinningBoards(boards, drawnNumbers);
+            winningBoards.ForEach(winningBoard =>
+            {
+                var index = Boards.IndexOf(winningBoard);
+                Boards.Remove(winningBoard);
+                pivotBoards.RemoveAt(index);
+            });
+
+            var winningPivotBoards = GetWinningBoards(pivotBoards, drawnNumbers);
+            winningPivotBoards.ForEach(winningBoard =>
+            {
+                var index = pivotBoards.IndexOf(winningBoard);
+                pivotBoards.Remove(winningBoard);
+                Boards.RemoveAt(index);
+            });
+        }
 
         private int[][] PivotArrayToJagged(int[][] source)
         {
