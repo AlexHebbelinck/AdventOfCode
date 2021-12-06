@@ -1,4 +1,5 @@
 ﻿using DailyCode.Base;
+using System.Diagnostics;
 
 namespace DailyCode.Year2021.Days
 {
@@ -32,12 +33,13 @@ namespace DailyCode.Year2021.Days
         protected override string RunPart2()
             => Run(256);
 
-        public string Run(int totalRuns)
+        private string Run(int totalRuns)
         {
             for (int i = 0; i < totalRuns; i++)
             {
                 HandleFishInternalTimer();
             }
+
             return (_totalFishesPerDay.Sum() + _newFishesPerDay.Sum()).ToString();
         }
 
