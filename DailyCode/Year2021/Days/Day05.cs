@@ -6,7 +6,7 @@ namespace DailyCode.Year2021.Days
 {
     public class Day05 : BaseDay
     {
-        private List<LineCoordinates> LinesCoordinates { get; set; } = new();
+        private List<LineCoordinates> LinesCoordinates { get; } = new();
 
         public Day05(string sessionId) : base(sessionId)
         {

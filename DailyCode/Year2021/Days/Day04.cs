@@ -6,7 +6,7 @@ namespace DailyCode.Year2021.Days
     public class Day04 : BaseDay
     {
         private List<int> DrawNumbers { get; set; } = new List<int>();
-        private List<int[][]> Boards { get; set; } = new List<int[][]>();
+        private List<int[][]> Boards { get; } = new List<int[][]>();
 
         private readonly Regex NumberRgx = new(@"\d+");
 
