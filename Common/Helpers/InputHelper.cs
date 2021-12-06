@@ -17,6 +17,7 @@ namespace Common.Helpers
 
         public async Task<List<string>> GetTestData()
         {
+            //Move to user secrets
             const string? fileLocation = @"F:\Documents\AdventOfCode\TestData.txt";
             return (await File.ReadAllTextAsync(fileLocation))
                 .Split(new[] { '\n' })
@@ -26,6 +27,7 @@ namespace Common.Helpers
 
         public async Task<List<string>> GetInputData(string filename, string sessionId, AdventConfig config)
         {
+            //Move to user secrets
             var fileLocation = @$"F:\Documents\AdventOfCode\{config.Year}\{filename}.txt";
 
             if (!File.Exists(fileLocation))

@@ -21,6 +21,6 @@ var startupCfg = new ConfigurationBuilder()
 
     Console.Write("\n \n");
 
-    //Forgot I was working with singletons there, will fix.
+    //Forgot I was working with singletons.... So private fields are never resetted here...
     Console.ReadLine();
 //}
