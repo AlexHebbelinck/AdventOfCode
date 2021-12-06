@@ -8,8 +8,8 @@ var startupCfg = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
 
-while (true)
-{
+//while (true)
+//{
     Console.Write("Commands: ");
     var commandAdventConfigActions = CommandPromptHandler.Instance.GetCommands(Console.ReadLine());
     var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
@@ -20,4 +20,7 @@ while (true)
     Console.WriteLine(await DaySelector.Instance.Run());
 
     Console.Write("\n \n");
-}
+
+    //Forgot I was working with singletons there, will fix.
+    Console.ReadLine();
+//}
