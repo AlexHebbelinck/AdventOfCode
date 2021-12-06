@@ -24,7 +24,7 @@ namespace DailyCode
 
         public void Initialize(AdventConfig config, string sessionId)
         {
-            if (_config != null) throw new NotSupportedException("Already initialized");
+            if (_config != null) return;
 
             _config = config;
 
