@@ -8,19 +8,16 @@ var startupCfg = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
 
-//while (true)
-//{
+while (true)
+{
     Console.Write("Commands: ");
     var commandAdventConfigActions = CommandPromptHandler.Instance.GetCommands(Console.ReadLine());
     var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
 
-    DaySelector.Instance.Initialize(config, startupCfg.GetSection("sessionId").Value);
+    DaySelector.Instance.Initialize(config);
 
     Console.Write("Output: ");
-    Console.WriteLine(await DaySelector.Instance.Run());
+    Console.WriteLine(await DaySelector.Instance.Run(startupCfg.GetSection("sessionId").Value));
 
     Console.Write("\n \n");
-
-    //Forgot I was working with singletons.... So private fields are never resetted here...
-    Console.ReadLine();
-//}
+}
