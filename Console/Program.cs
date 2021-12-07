@@ -8,8 +8,8 @@ var startupCfg = new ConfigurationBuilder()
             .AddUserSecrets<Program>()
             .Build();
 
-while (true)
-{
+//while (true)
+//{
     Console.Write("Commands: ");
     var commandAdventConfigActions = CommandPromptHandler.Instance.GetCommands(Console.ReadLine());
     var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
@@ -20,4 +20,7 @@ while (true)
     Console.WriteLine(await DaySelector.Instance.Run(startupCfg.GetSection("sessionId").Value));
 
     Console.Write("\n \n");
-}
+
+    //Loop is still broken.... I swear I'll get it fixed one day....
+    Console.ReadLine();
+//}
