@@ -35,7 +35,7 @@ namespace DailyCode.Year2021.Days
 
             for(int i = 0; i < _sortedNumbers.Max(); i++)
             {
-                var fuelUse = _sortedNumbers.Select(x => Resolve(Math.Abs(x - i))).Sum();
+                var fuelUse = _sortedNumbers.Select(x => GetFuelConsumption(Math.Abs(x - i))).Sum();
                 if (fuelUse < lowestFuelUse)
                     lowestFuelUse = fuelUse;
             }
@@ -43,7 +43,7 @@ namespace DailyCode.Year2021.Days
             return lowestFuelUse.ToString();
         }
 
-        public static int Resolve(int input)
+        private int GetFuelConsumption(int input)
             => input * (input + 1) / 2;
 
     }
