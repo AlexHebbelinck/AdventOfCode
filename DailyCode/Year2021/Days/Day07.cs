@@ -31,7 +31,7 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart2()
         {
-            var lowestFuelUse = long.MaxValue;
+            var lowestFuelUse = int.MaxValue;
 
             for(int i = 0; i < _sortedNumbers.Max(); i++)
             {
