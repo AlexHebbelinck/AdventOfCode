@@ -20,7 +20,7 @@ namespace DailyCode.Year2021.Models
 			SegmentPattern = segmentPattern;
 		}
 
-		public string SegmentPattern { get; set; }
+		public string SegmentPattern { get; }
 
 		public int SegmentLength => SegmentPattern.Length;
 	}

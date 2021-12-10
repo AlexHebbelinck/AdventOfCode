@@ -24,10 +24,10 @@ namespace ConsoleApp.Commands
             AdventConfigAction = action;
         }
 
-        public string Command { get; set; }
-        public Action ExecuteAction { get; set; } = () => { };
-        public Action<AdventConfig, string> AdventConfigAction { get; set; } = (_, __) => { };
-        public bool IsExecuteAction { get; set; }
+        public string Command { get;  }
+        public Action ExecuteAction { get; } = () => { };
+        public Action<AdventConfig, string> AdventConfigAction { get; } = (_, __) => { };
+        public bool IsExecuteAction { get; }
 
         private static List<CommandPrompt> CommandPrompts => new() { Clear, Exit, PartSelector, DaySelector, TestDataSelector, YearSelector };
 
