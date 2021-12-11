@@ -39,7 +39,7 @@ namespace DailyCode.Year2021.Days
         {
             var diagram = new int[LinesCoordinates.Max(x => x.HighestXCoordinate) + 1, LinesCoordinates.Max(y => y.HighestYCoordinate) + 1];
 
-            foreach (var lineCoordinates in LinesCoordinates.Where(x => !checkIfDiagonal || x.IsDiagonal))
+            foreach (var lineCoordinates in LinesCoordinates.Where(x => !checkIfDiagonal || !x.IsDiagonal))
             {
                 var fullLineRange = lineCoordinates.GetFullLineRange();
                 foreach ((int x, int y) in fullLineRange)
