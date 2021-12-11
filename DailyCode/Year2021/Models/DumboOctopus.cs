@@ -13,7 +13,7 @@
 
         public int TotalFlashes { get; private set; }
 
-        public int FlashedOn { get; private set; }
+        public int? FlashedOn { get; private set; }
 
         public void IncreaseEnergyLevel(int step)
         {

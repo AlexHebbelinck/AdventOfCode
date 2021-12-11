@@ -37,14 +37,13 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart2()
         {
-            var step = 1;
-            while (true)
+            var step = 0;
+            do
             {
-                HandleOctopi(step);
-                if (_fileInput.All(y => y.All(x => x.FlashedOn == step)))
-                    break;
                 ++step;
+                HandleOctopi(step);
             }
+            while (!_fileInput.All(y => y.All(x => x.FlashedOn == step)));
 
             return step.ToString();
         }
