@@ -10,23 +10,26 @@ using System.Text.RegularExpressions;
 
 namespace DailyCode.Tests.Fixtures
 {
-    public class Year2021Fixture
+    public class DayRunPartFixture
     {
-        private readonly Regex numberRgx = new(@"\d+");
-        public List<FixtureModel> Models { get; set; } = new();
+        private readonly Regex _numberRgx = new(@"\d+");
+        private readonly Regex _namespaceRgx = new(@"DailyCode\.Year\d{4}\.Days");
 
-        public Year2021Fixture()
+        public List<DailyCodeMethods> DailyCodeMethods { get; set; } = new();
+
+        public DayRunPartFixture()
         {
-            foreach (var type in Assembly.Load("DailyCode").GetTypes().Where(x => x.IsClass && typeof(BaseDay).IsAssignableFrom(x) && x.Namespace?.Equals("DailyCode.Year2021.Days", StringComparison.InvariantCultureIgnoreCase) == true))
+            foreach (var type in Assembly.Load("DailyCode").GetTypes().Where(x => x.IsClass && typeof(BaseDay).IsAssignableFrom(x) && _namespaceRgx.IsMatch(x.Namespace ?? string.Empty)))
             {
                 if (Activator.CreateInstance(type, string.Empty) is BaseDay classInstance)
                 {
                     var runPart1 = type.GetMethod("RunPart1", BindingFlags.Instance | BindingFlags.NonPublic);
                     var runPart2 = type.GetMethod("RunPart2", BindingFlags.Instance | BindingFlags.NonPublic);
 
-                    Models.Add(new FixtureModel
+                    DailyCodeMethods.Add(new DailyCodeMethods
                     {
-                        Day = uint.Parse(numberRgx.Match(type.Name).Value),
+                        Year =  int.Parse(_numberRgx.Match(type.Namespace ?? string.Empty).Value),
+                        Day = uint.Parse(_numberRgx.Match(type.Name).Value),
                         Type = type,
                         RunPart1 = runPart1,
                         RunPart2 = runPart2
@@ -35,10 +38,10 @@ namespace DailyCode.Tests.Fixtures
             }
         }
 
-        public long RunPart(uint day, uint part)
+        public long RunPart(int year, uint day, uint part)
         {
-            var model = Models.Find(x => x.Day == day);
-            if (model == null || model.Type == null) throw new ArgumentException("Day doesn't exist");
+            var model = DailyCodeMethods.Find(x => x.Year == year && x.Day == day);
+            if (model == null || model.Type == null) throw new ArgumentException("Day doesn't exist for chosen year.");
 
             if (Activator.CreateInstance(model.Type, string.Empty) is BaseDay classInstance)
             {

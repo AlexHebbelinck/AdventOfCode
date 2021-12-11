@@ -4,11 +4,11 @@ using Xunit;
 
 namespace DailyCode.Tests
 {
-    public class Year2021Tests : IClassFixture<Year2021Fixture>
+    public class Year2021DayRunPartTests : IClassFixture<DayRunPartFixture>
     {
-        private readonly Year2021Fixture _fixture;
+        private readonly DayRunPartFixture _fixture;
 
-        public Year2021Tests(Year2021Fixture fixture)
+        public Year2021DayRunPartTests(DayRunPartFixture fixture)
         {
             _fixture = fixture;
         }
@@ -17,7 +17,7 @@ namespace DailyCode.Tests
         [MemberData(nameof(GetTestData))]
         public void Day_RunPart_Expected_Result(uint day, uint part, long expectedResult)
         {
-            var result = _fixture.RunPart(day, part);
+            var result = _fixture.RunPart(2021, day, part);
             Assert.Equal(expectedResult, result);
         }
 
