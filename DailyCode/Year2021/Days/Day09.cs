@@ -13,7 +13,7 @@ namespace DailyCode.Year2021.Days
         protected override void ExtractData(List<string> fileInput)
             => _fileInput = fileInput.Select(x => x.Select(letter => int.Parse(letter.ToString())).ToArray()).ToArray();
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             var lowestPoints = new List<int>();
 
@@ -32,10 +32,10 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return (lowestPoints.Sum() + (lowestPoints.Count * 1)).ToString();
+            return lowestPoints.Sum() + (lowestPoints.Count * 1);
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var basinTotals = new List<int>();
             for (var x = 0; x < _fileInput.Length; x++)
@@ -53,7 +53,7 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return basinTotals.OrderByDescending(x => x).Take(3).Aggregate((a, x) => a * x).ToString();
+            return basinTotals.OrderByDescending(x => x).Take(3).Aggregate((a, x) => a * x);
         }
 
         private List<int> GetAdjecentNumbers((int x, int y) currentPos)

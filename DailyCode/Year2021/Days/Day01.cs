@@ -15,7 +15,7 @@ namespace DailyCode.Year2021.Days
             _fileInput = fileInput.ConvertAll(x => int.Parse(x));
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             var counter = 0;
             for (int i = 1; i < _fileInput.Count; i++)
@@ -23,10 +23,10 @@ namespace DailyCode.Year2021.Days
                 if (_fileInput[i] > _fileInput[i - 1])
                     counter++;
             }
-            return counter.ToString();
+            return counter;
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var counter = 0;
             var previousSum = 0;
@@ -43,7 +43,7 @@ namespace DailyCode.Year2021.Days
                 previousSum = sum;
             }
 
-            return counter.ToString();
+            return counter;
         }
     }
 }

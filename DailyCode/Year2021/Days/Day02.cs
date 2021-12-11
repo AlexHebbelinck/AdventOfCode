@@ -19,7 +19,7 @@ namespace DailyCode.Year2021.Days
                 });
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             var xPos = 0;
             var yPos = 0;
@@ -42,10 +42,10 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return (yPos * xPos).ToString();
+            return yPos * xPos;
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             (int xPos, int yPos, int aim) = (0, 0, 0);
 
@@ -68,7 +68,7 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return (yPos * xPos).ToString();
+            return yPos * xPos;
         }
     }
 }

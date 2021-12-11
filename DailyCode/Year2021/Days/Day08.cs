@@ -20,10 +20,10 @@ namespace DailyCode.Year2021.Days
                 });
         }
 
-        protected override string RunPart1()
-            => _fileInput.SelectMany(x => x.output).Count(x => x.Length <= 4 || x.Length == 7).ToString();
+        protected override long RunPart1()
+            => _fileInput.SelectMany(x => x.output).Count(x => x.Length <= 4 || x.Length == 7);
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var total = 0;
             foreach (var input in _fileInput)
@@ -57,7 +57,8 @@ namespace DailyCode.Year2021.Days
 
                 total += int.Parse(outputNumber);
             }
-            return total.ToString();
+
+            return total;
         }
 
         private string SortString(string input)

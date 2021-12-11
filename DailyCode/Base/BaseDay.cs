@@ -12,7 +12,7 @@ namespace DailyCode.Base
             _sessionId = sessionId;
         }
 
-        public async Task<string> Run(AdventConfig config)
+        public async Task<long> Run(AdventConfig config)
         {
             var fileInput = config.UseTestData
                 ? await InputHelper.Instance.GetTestData()
@@ -30,8 +30,8 @@ namespace DailyCode.Base
 
         protected abstract void ExtractData(List<string> fileInput);
 
-        protected abstract string RunPart1();
+        protected abstract long RunPart1();
 
-        protected abstract string RunPart2();
+        protected abstract long RunPart2();
     }
 }

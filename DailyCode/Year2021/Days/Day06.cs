@@ -27,20 +27,20 @@ namespace DailyCode.Year2021.Days
             _newFishesPerDay.Enqueue(0);
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
             => Run(80);
 
-        protected override string RunPart2()
+        protected override long RunPart2()
             => Run(256);
 
-        private string Run(int totalRuns)
+        private long Run(int totalRuns)
         {
             for (int i = 0; i < totalRuns; i++)
             {
                 HandleFishInternalTimer();
             }
 
-            return (_totalFishesPerDay.Sum() + _newFishesPerDay.Sum()).ToString();
+            return _totalFishesPerDay.Sum() + _newFishesPerDay.Sum();
         }
 
         public void HandleFishInternalTimer()

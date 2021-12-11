@@ -19,17 +19,17 @@ namespace DailyCode.Year2021.Days
                .ToList();
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             var halfIndex = _sortedNumbers.Count / 2;
             var median = (_sortedNumbers.Count % 2) == 0
                 ? ((_sortedNumbers[halfIndex] + _sortedNumbers[halfIndex - 1]) / 2)
                 : _sortedNumbers[halfIndex];
 
-            return _sortedNumbers.Select(x => Math.Abs(x - median)).Sum().ToString();
+            return _sortedNumbers.Select(x => Math.Abs(x - median)).Sum();
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var lowestFuelUse = int.MaxValue;
 
@@ -40,7 +40,7 @@ namespace DailyCode.Year2021.Days
                     lowestFuelUse = fuelUse;
             }
 
-            return lowestFuelUse.ToString();
+            return lowestFuelUse;
         }
 
         private int GetFuelConsumption(int input)

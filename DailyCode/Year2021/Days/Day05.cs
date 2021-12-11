@@ -25,17 +25,17 @@ namespace DailyCode.Year2021.Days
             }
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             return Run(true);
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             return Run();
         }
 
-        private string Run(bool checkIfDiagonal = false)
+        private int Run(bool checkIfDiagonal = false)
         {
             var diagram = new int[LinesCoordinates.Max(x => x.HighestXCoordinate) + 1, LinesCoordinates.Max(y => y.HighestYCoordinate) + 1];
 
@@ -48,7 +48,7 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return diagram.Cast<int>().Count(x => x > 1).ToString();
+            return diagram.Cast<int>().Count(x => x > 1);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace DailyCode.Year2021.Days
             if (newCreatedBoard != null) Boards.Add(newCreatedBoard);
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             var pivotBoards = Boards.ConvertAll(board => board.Pivot());
             var numbersPerRow = Boards[0][0].Length;
@@ -60,10 +60,10 @@ namespace DailyCode.Year2021.Days
 
             var sumUnmarkedNumbers = winningBoard.SelectMany(line => line.Where(number => !drawnNumbers.Contains(number))).Sum();
 
-            return (sumUnmarkedNumbers * drawnNumbers.Last()).ToString();
+            return sumUnmarkedNumbers * drawnNumbers.Last();
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var pivotBoards = Boards.ConvertAll(board => board.Pivot());
             var numbersPerRow = Boards[0][0].Length;
@@ -91,7 +91,7 @@ namespace DailyCode.Year2021.Days
 
             var sumUnmarkedNumbers = losingBoard.SelectMany(line => line.Where(number => !drawnNumbers.Contains(number))).Sum();
 
-            return (sumUnmarkedNumbers * drawnNumbers.Last()).ToString();
+            return sumUnmarkedNumbers * drawnNumbers.Last();
         }
 
         private int[][]? GetWinningBoard(List<int[][]> boards, List<int> drawnNumbers)
