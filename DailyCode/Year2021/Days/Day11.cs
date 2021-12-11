@@ -24,7 +24,7 @@ namespace DailyCode.Year2021.Days
             }
         }
 
-        protected override string RunPart1()
+        protected override long RunPart1()
         {
             const int steps = 100;
             for (int step = 0; step <= steps; step++)
@@ -32,10 +32,10 @@ namespace DailyCode.Year2021.Days
                 HandleOctopi(step);
             }
 
-            return _fileInput.Sum(y => y.Sum(x => x.TotalFlashes)).ToString();
+            return _fileInput.Sum(y => y.Sum(x => x.TotalFlashes));
         }
 
-        protected override string RunPart2()
+        protected override long RunPart2()
         {
             var step = 0;
             do
@@ -45,7 +45,7 @@ namespace DailyCode.Year2021.Days
             }
             while (!_fileInput.All(y => y.All(x => x.FlashedOn == step)));
 
-            return step.ToString();
+            return step;
         }
 
         private void HandleOctopi(int step)
