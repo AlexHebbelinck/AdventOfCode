@@ -27,7 +27,7 @@ namespace DailyCode.Year2021.Days
         protected override long RunPart1()
         {
             const int steps = 100;
-            for (int step = 0; step <= steps; step++)
+            for (int step = 1; step <= steps; step++)
             {
                 HandleOctopi(step);
             }
