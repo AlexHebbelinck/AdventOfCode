@@ -39,7 +39,8 @@ namespace Common.Helpers
                 .ToList();
 
             //Last entry is always empty...
-            input.RemoveAt(input.Count - 1);
+            if(string.IsNullOrWhiteSpace(input.Last()))
+                input.RemoveAt(input.Count - 1);
 
             return input;
         }
