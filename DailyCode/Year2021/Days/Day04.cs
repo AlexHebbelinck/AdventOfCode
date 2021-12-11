@@ -1,4 +1,5 @@
-﻿using DailyCode.Base;
+﻿using Common.Helpers.Extensions;
+using DailyCode.Base;
 using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2021.Days
@@ -42,7 +43,7 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart1()
         {
-            var pivotBoards = Boards.ConvertAll(board => PivotArrayToJagged(board));
+            var pivotBoards = Boards.ConvertAll(board => board.Pivot());
             var numbersPerRow = Boards[0][0].Length;
             var drawnNumbers = new List<int>();
             int[][]? winningBoard = null;
@@ -64,7 +65,7 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart2()
         {
-            var pivotBoards = Boards.ConvertAll(board => PivotArrayToJagged(board));
+            var pivotBoards = Boards.ConvertAll(board => board.Pivot());
             var numbersPerRow = Boards[0][0].Length;
             var drawnNumbers = new List<int>();
             int[][]? losingBoard = null;
@@ -116,29 +117,6 @@ namespace DailyCode.Year2021.Days
                 pivotBoards.Remove(winningBoard);
                 Boards.RemoveAt(index);
             });
-        }
-
-        private int[][] PivotArrayToJagged(int[][] source)
-        {
-            var numRows = source.Max(a => a.Length);
-            var items = new List<List<int>>();
-
-            for (int row = 0; row < source.Length; ++row)
-            {
-                for (int col = 0; col < source[row].Length; ++col)
-                {
-                    if (items.Count <= col)
-                        items.Add(new List<int>());
-
-                    var current = items[col];
-
-                    current.Add(source[row][col]);
-                }
-            }
-
-            return (from i in items
-                    select i.ToArray()
-                    ).ToArray();
         }
     }
 }
