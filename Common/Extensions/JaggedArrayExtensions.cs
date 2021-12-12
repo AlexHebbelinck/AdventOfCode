@@ -20,22 +20,20 @@
                 }
             }
 
-            return (from i in items
-                    select i.ToArray()
-                    ).ToArray();
+            return items.Select(x => x.ToArray()).ToArray();
         }
 
         public static List<T> GetAdjacent<T>(this T[][] source, (int y, int x) currentPos, bool includeDiagonally)
         {
             const int range = 3;
-            var result = Enumerable.Range(currentPos.y - 1, range)
+
+            return Enumerable.Range(currentPos.y - 1, range)
                  .SelectMany(_ => Enumerable.Range(currentPos.x - 1, range), (y, x) => new { y, x })
                  .Where(possiblPos => possiblPos.y >= 0 && possiblPos.x >= 0 && (possiblPos.y != currentPos.y || possiblPos.x != currentPos.x)
                      && possiblPos.y < source.Length && possiblPos.x < source[currentPos.y].Length
                      && (includeDiagonally || (possiblPos.y == currentPos.y || possiblPos.x == currentPos.x)))
-                 .Select(possiblPos => source[possiblPos.y][possiblPos.x]);
-
-            return result.ToList();
+                 .Select(possiblPos => source[possiblPos.y][possiblPos.x])
+                 .ToList();
         }
     }
 }
