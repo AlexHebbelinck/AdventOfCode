@@ -1,4 +1,5 @@
-﻿using DailyCode.Base;
+﻿using Common.Helpers.Extensions;
+using DailyCode.Base;
 
 namespace DailyCode.Year2021.Days
 {
@@ -24,7 +25,7 @@ namespace DailyCode.Year2021.Days
                     var currentNumber = _fileInput[x][y];
                     if (currentNumber < 9)
                     {
-                       var adjacentNumbers = GetAdjecentNumbers((x, y));
+                        var adjacentNumbers = _fileInput.GetAdjacent((x, y), false);
 
                         if (adjacentNumbers.Min() > currentNumber)
                             lowestPoints.Add(currentNumber);
@@ -45,7 +46,7 @@ namespace DailyCode.Year2021.Days
                     var currentNumber = _fileInput[x][y];
                     if (currentNumber < 9)
                     {
-                        var adjacentNumbers = GetAdjecentNumbers((x, y));
+                        var adjacentNumbers = _fileInput.GetAdjacent((x, y), false);
 
                         if (adjacentNumbers.Min() > currentNumber)
                             basinTotals.Add(CollectBasin((x, y)).Distinct().Count());

@@ -25,41 +25,17 @@
                     ).ToArray();
         }
 
-        //TODO: Clean up later...
         public static List<T> GetAdjacent<T>(this T[][] source, (int y, int x) currentPos, bool includeDiagonally)
         {
-            var adjacentNumbers = new List<T>();
+            const int range = 3;
+            var result = Enumerable.Range(currentPos.y - 1, range)
+                 .SelectMany(_ => Enumerable.Range(currentPos.x - 1, range), (y, x) => new { y, x })
+                 .Where(possiblPos => possiblPos.y >= 0 && possiblPos.x >= 0 && (possiblPos.y != currentPos.y || possiblPos.x != currentPos.x)
+                     && possiblPos.y < source.Length && possiblPos.x < source[currentPos.y].Length
+                     && (includeDiagonally || (possiblPos.y == currentPos.y || possiblPos.x == currentPos.x)))
+                 .Select(possiblPos => source[possiblPos.y][possiblPos.x]);
 
-            if (currentPos.y > 0)
-                adjacentNumbers.Add(source[currentPos.y - 1][currentPos.x]);
-            if (currentPos.y < source.Length - 1)
-                adjacentNumbers.Add(source[currentPos.y + 1][currentPos.x]);
-
-            if (currentPos.x > 0)
-                adjacentNumbers.Add(source[currentPos.y][currentPos.x - 1]);
-            if (currentPos.x < source[currentPos.y].Length - 1)
-                adjacentNumbers.Add(source[currentPos.y][currentPos.x + 1]);
-
-
-            if (includeDiagonally)
-            {
-                if (currentPos.y > 0)
-                {
-                    if(currentPos.x > 0)
-                        adjacentNumbers.Add(source[currentPos.y - 1][currentPos.x - 1]);
-                    if (currentPos.x < source[currentPos.y].Length - 1)
-                        adjacentNumbers.Add(source[currentPos.y - 1][currentPos.x + 1]);
-                }
-
-                if (currentPos.y < source.Length - 1)
-                {
-                    if (currentPos.x > 0)
-                        adjacentNumbers.Add(source[currentPos.y + 1][currentPos.x - 1]);
-                    if (currentPos.x < source[currentPos.y].Length - 1)
-                        adjacentNumbers.Add(source[currentPos.y + 1][currentPos.x + 1]);
-                }
-            }
-            return adjacentNumbers;
+            return result.ToList();
         }
     }
 }
