@@ -6,7 +6,7 @@ namespace DailyCode.Year2021.Days
 {
     public class Day11 : BaseDay
     {
-        private DumboOctopus[][] _fileInput = Array.Empty<DumboOctopus[]>();
+        private DumboOctopus[][] _dumboOctopi = Array.Empty<DumboOctopus[]>();
 
         public Day11(string sessionId) : base(sessionId)
         {
@@ -14,12 +14,12 @@ namespace DailyCode.Year2021.Days
 
         protected override void ExtractData(List<string> fileInput)
         {
-            _fileInput = fileInput.Select(line => line.Select(letter => new DumboOctopus(int.Parse(letter.ToString()))).ToArray()).ToArray();
-            for (int y = 0; y < _fileInput.Length; y++)
+            _dumboOctopi = fileInput.Select(line => line.Select(letter => new DumboOctopus(int.Parse(letter.ToString()))).ToArray()).ToArray();
+            for (int y = 0; y < _dumboOctopi.Length; y++)
             {
-                for (int x = 0; x < _fileInput[y].Length; x++)
+                for (int x = 0; x < _dumboOctopi[y].Length; x++)
                 {
-                    _fileInput[y][x].AdjacentDumboOctopi = _fileInput.GetAdjacent((y, x), true);
+                    _dumboOctopi[y][x].AdjacentDumboOctopi = _dumboOctopi.GetAdjacent((y, x), true);
                 }
             }
         }
@@ -32,7 +32,7 @@ namespace DailyCode.Year2021.Days
                 HandleOctopi(step);
             }
 
-            return _fileInput.Sum(y => y.Sum(x => x.TotalFlashes));
+            return _dumboOctopi.Sum(y => y.Sum(x => x.TotalFlashes));
         }
 
         protected override long RunPart2()
@@ -43,18 +43,18 @@ namespace DailyCode.Year2021.Days
                 ++step;
                 HandleOctopi(step);
             }
-            while (!_fileInput.All(y => y.All(x => x.FlashedOn == step)));
+            while (!_dumboOctopi.All(y => y.All(x => x.FlashedOn == step)));
 
             return step;
         }
 
         private void HandleOctopi(int step)
         {
-            for (int y = 0; y < _fileInput.Length; y++)
+            for (int y = 0; y < _dumboOctopi.Length; y++)
             {
-                for (int x = 0; x < _fileInput[y].Length; x++)
+                for (int x = 0; x < _dumboOctopi[y].Length; x++)
                 {
-                    _fileInput[y][x].IncreaseEnergyLevel(step);
+                    _dumboOctopi[y][x].IncreaseEnergyLevel(step);
                 }
             }
         }
