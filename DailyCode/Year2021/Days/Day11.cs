@@ -12,7 +12,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
         {
             _dumboOctopi = fileInput.Select(line => line.Select(letter => new DumboOctopus(int.Parse(letter.ToString()))).ToArray()).ToArray();
             for (int y = 0; y < _dumboOctopi.Length; y++)
@@ -24,7 +24,7 @@ namespace DailyCode.Year2021.Days
             }
         }
 
-        protected override long RunPart1()
+        protected override string RunPart1()
         {
             const int steps = 100;
             for (int step = 1; step <= steps; step++)
@@ -32,10 +32,10 @@ namespace DailyCode.Year2021.Days
                 HandleOctopi(step);
             }
 
-            return _dumboOctopi.Sum(y => y.Sum(x => x.TotalFlashes));
+            return _dumboOctopi.Sum(y => y.Sum(x => x.TotalFlashes)).ToString();
         }
 
-        protected override long RunPart2()
+        protected override string RunPart2()
         {
             var step = 0;
             do
@@ -45,7 +45,7 @@ namespace DailyCode.Year2021.Days
             }
             while (!_dumboOctopi.All(y => y.All(x => x.FlashedOn == step)));
 
-            return step;
+            return step.ToString();
         }
 
         private void HandleOctopi(int step)

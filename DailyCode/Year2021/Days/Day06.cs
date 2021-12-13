@@ -13,7 +13,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
         {
             var collection = new List<long>(new long[7]);
 
@@ -27,11 +27,11 @@ namespace DailyCode.Year2021.Days
             _newFishesPerDay.Enqueue(0);
         }
 
-        protected override long RunPart1()
-            => Run(80);
+        protected override string RunPart1()
+            => Run(80).ToString();
 
-        protected override long RunPart2()
-            => Run(256);
+        protected override string RunPart2()
+            => Run(256).ToString();
 
         private long Run(int totalRuns)
         {

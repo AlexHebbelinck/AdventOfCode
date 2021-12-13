@@ -38,7 +38,7 @@ namespace DailyCode.Tests.Fixtures
             }
         }
 
-        public long RunPart(int year, uint day, uint part)
+        public string RunPart(int year, uint day, uint part)
         {
             var model = DailyCodeMethods.Find(x => x.Year == year && x.Day == day);
             if (model == null || model.Type == null) throw new ArgumentException("Day doesn't exist for chosen year.");
@@ -47,18 +47,18 @@ namespace DailyCode.Tests.Fixtures
             {
                 var input = InputHelper.Instance.GetInputData(model.Type.Name, string.Empty, new AdventConfig()).Result;
 
-                var extractDataMethod = model.Type.GetMethod("ExtractData", BindingFlags.Instance | BindingFlags.NonPublic);
+                var extractDataMethod = model.Type.GetMethod("SetupData", BindingFlags.Instance | BindingFlags.NonPublic);
                 extractDataMethod?.Invoke(classInstance, new object[] { input });
 
                 return part switch
                 {
-                    1 => model.RunPart1?.Invoke(classInstance, null) as long? ?? 0,
-                    2 => model.RunPart2?.Invoke(classInstance, null) as long? ?? 0,
+                    1 => model.RunPart1?.Invoke(classInstance, null) as string ?? string.Empty,
+                    2 => model.RunPart2?.Invoke(classInstance, null) as string ?? string.Empty,
                     _ => throw new Exception("Part doesn't exist"),
                 };
             }
 
-            return 0;
+            return string.Empty;
         }
     }
 }

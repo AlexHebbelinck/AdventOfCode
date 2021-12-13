@@ -10,12 +10,12 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
         {
             _fileInput = fileInput.Select(x => x.Select(c => int.Parse(c.ToString())).ToArray()).ToArray();
         }
 
-        protected override long RunPart1()
+        protected override string RunPart1()
         {
             if (_fileInput == null) throw new NullReferenceException("Kapoowie explosions!");
 
@@ -34,17 +34,17 @@ namespace DailyCode.Year2021.Days
 
             epsilonRate = gammaRate.Select(x => x ^= 1).ToArray();
 
-            return Convert.ToInt32(string.Join("", gammaRate), 2) * Convert.ToInt32(string.Join("", epsilonRate), 2);
+            return (Convert.ToInt32(string.Join("", gammaRate), 2) * Convert.ToInt32(string.Join("", epsilonRate), 2)).ToString();
         }
 
-        protected override long RunPart2()
+        protected override string RunPart2()
         {
             if (_fileInput == null) throw new NullReferenceException("Kapoowie explosions!");
 
             var oxygenGeneratorRating = CalculateRatings(_fileInput, 0, true);
             var scrubberRating = CalculateRatings(_fileInput, 0, false);
 
-            return Convert.ToInt32(string.Join("", oxygenGeneratorRating), 2) * Convert.ToInt32(string.Join("", scrubberRating), 2);
+            return (Convert.ToInt32(string.Join("", oxygenGeneratorRating), 2) * Convert.ToInt32(string.Join("", scrubberRating), 2)).ToString();
         }
 
         private int[] CalculateRatings(int[][] validArrays, int currentColumn, bool keepMost)

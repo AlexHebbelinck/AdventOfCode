@@ -14,10 +14,10 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
             => _fileInput = fileInput.ConvertAll(x => new Queue<char>(x));
 
-        protected override long RunPart1()
+        protected override string RunPart1()
         {
             var corruptSymbols = new List<char>();
 
@@ -27,10 +27,10 @@ namespace DailyCode.Year2021.Days
                 if (corruptSymbol != null) corruptSymbols.Add(corruptSymbol.Value);
             }
 
-            return corruptSymbols.Sum(symbol => _syntaxErrorScores.Single(es => es.symbol == symbol).value);
+            return corruptSymbols.Sum(symbol => _syntaxErrorScores.Single(es => es.symbol == symbol).value).ToString();
         }
 
-        protected override long RunPart2()
+        protected override string RunPart2()
         {
             var totalCompletionScores = new List<long>();
 
@@ -50,7 +50,7 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return totalCompletionScores.OrderBy(x => x).ToArray()[totalCompletionScores.Count / 2];
+            return totalCompletionScores.OrderBy(x => x).ToArray()[totalCompletionScores.Count / 2].ToString();
         }
 
         private (Stack<char> openedSymbols, char? corruptSymbol) HandleLineSymbols(Queue<char> line)

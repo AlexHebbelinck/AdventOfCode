@@ -34,7 +34,7 @@ namespace DailyCode
             }
         }
 
-        public async Task<long?> Run(string sessionId, AdventConfig config)
+        public async Task<string?> Run(string sessionId, AdventConfig config)
         {
             if (config != null)
             {
@@ -42,7 +42,7 @@ namespace DailyCode
 
                 if (Activator.CreateInstance(type, sessionId) is BaseDay classInstance)
                 {
-                    if (type.GetMethod(nameof(BaseDay.Run))?.Invoke(classInstance, new object[] { config }) is Task<long> result) return await result;
+                    if (type.GetMethod(nameof(BaseDay.Run))?.Invoke(classInstance, new object[] { config }) is Task<string> result) return await result;
                 }
             }
 

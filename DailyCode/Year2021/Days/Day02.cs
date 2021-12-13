@@ -10,7 +10,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
         {
             _fileInput = fileInput.ConvertAll(x =>
                 {
@@ -19,7 +19,7 @@ namespace DailyCode.Year2021.Days
                 });
         }
 
-        protected override long RunPart1()
+        protected override string RunPart1()
         {
             var xPos = 0;
             var yPos = 0;
@@ -42,10 +42,10 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return yPos * xPos;
+            return (yPos * xPos).ToString();
         }
 
-        protected override long RunPart2()
+        protected override string RunPart2()
         {
             (int xPos, int yPos, int aim) = (0, 0, 0);
 
@@ -68,7 +68,7 @@ namespace DailyCode.Year2021.Days
                 }
             }
 
-            return yPos * xPos;
+            return (yPos * xPos).ToString();
         }
     }
 }

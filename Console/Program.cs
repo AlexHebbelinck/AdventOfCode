@@ -16,7 +16,7 @@ while (true)
     var commandAdventConfigActions = CommandPromptHandler.Instance.GetCommands(Console.ReadLine());
     var config = await AdventConfigHelper.Instance.GetAdventConfig(commandAdventConfigActions);
 
-    Console.Write("Output: ");
+    Console.WriteLine("Output: ");
     Console.WriteLine(await DaySelector.Instance.Run(startupCfg.GetSection("sessionId").Value, config));
 
     Console.Write("\n \n");

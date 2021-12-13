@@ -12,7 +12,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void ExtractData(List<string> fileInput)
+        protected override void SetupData(List<string> fileInput)
         {
             foreach (var line in fileInput)
             {
@@ -25,14 +25,14 @@ namespace DailyCode.Year2021.Days
             }
         }
 
-        protected override long RunPart1()
+        protected override string RunPart1()
         {
-            return Run(true);
+            return Run(true).ToString();
         }
 
-        protected override long RunPart2()
+        protected override string RunPart2()
         {
-            return Run();
+            return Run().ToString();
         }
 
         private int Run(bool checkIfDiagonal = false)

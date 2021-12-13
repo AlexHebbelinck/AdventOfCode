@@ -15,7 +15,7 @@ namespace DailyCode.Tests
 
         [Theory]
         [MemberData(nameof(GetTestData))]
-        public void Day_RunPart_Expected_Result(uint day, uint part, long expectedResult)
+        public void Day_RunPart_Expected_Result(uint day, uint part, string expectedResult)
         {
             var result = _fixture.RunPart(2021, day, part);
             Assert.Equal(expectedResult, result);
@@ -49,6 +49,9 @@ namespace DailyCode.Tests
                 new object[] { 11, 2, 244 },
                 new object[] { 12, 1, 4186 },
                 new object[] { 12, 2, 92111 },
+                new object[] { 13, 1, 814 },
+                //Todo: Need to fix this test...
+                //new object[] { 13, 2, @"###..####.####.#..#.###...##..####.###.\r\n#..#....#.#....#..#.#..#.#..#.#....#..#\r\n#..#...#..###..####.#..#.#..#.###..#..#\r\n###...#...#....#..#.###..####.#....###.\r\n#....#....#....#..#.#.#..#..#.#....#.#.\r\n#....####.####.#..#.#..#.#..#.####.#..#\r\n" },
             };
         }
     }

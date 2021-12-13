@@ -12,13 +12,13 @@ namespace DailyCode.Base
             _sessionId = sessionId;
         }
 
-        public async Task<long> Run(AdventConfig config)
+        public async Task<string> Run(AdventConfig config)
         {
             var fileInput = config.UseTestData
                 ? await InputHelper.Instance.GetTestData()
                 : await InputHelper.Instance.GetInputData(GetType().Name, _sessionId, config);
 
-            ExtractData(fileInput);
+            SetupData(fileInput);
 
             return config.Part switch
             {
@@ -28,10 +28,10 @@ namespace DailyCode.Base
             };
         }
 
-        protected abstract void ExtractData(List<string> fileInput);
+        protected abstract void SetupData(List<string> fileInput);
 
-        protected abstract long RunPart1();
+        protected abstract string RunPart1();
 
-        protected abstract long RunPart2();
+        protected abstract string RunPart2();
     }
 }
