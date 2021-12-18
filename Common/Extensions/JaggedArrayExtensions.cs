@@ -1,4 +1,4 @@
-﻿namespace Common.Helpers.Extensions
+﻿namespace Common.Extensions
 {
     public static class JaggedArrayExtensions
     {

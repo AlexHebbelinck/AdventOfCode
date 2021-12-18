@@ -1,4 +1,4 @@
-﻿using Common.Helpers.Extensions;
+﻿using Common.Extensions;
 using DailyCode.Base;
 
 namespace DailyCode.Year2021.Days

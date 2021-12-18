@@ -1,12 +1,12 @@
 ﻿using DailyCode.Base;
 using DailyCode.Year2021.Models;
-using Common.Helpers.Extensions;
+using Common.Extensions;
 
 namespace DailyCode.Year2021.Days
 {
     public class Day12 : BaseDay
     {
-        private List<Cave> _caves = new();
+        private readonly List<Cave> _caves = new();
 
         public Day12(string sessionId) : base(sessionId)
         {

@@ -13,7 +13,6 @@ namespace DailyCode.Year2021.Days
     public class Day14 : BaseDay
     {
         private readonly Regex _inputRgx = new(@"(\w{2}) -> (\w{1})");
-        private List<DoSomething> _fileInput = new();
 
        private List<SecondTwo> SecondTwos = new();
 
@@ -36,38 +35,16 @@ namespace DailyCode.Year2021.Days
                 return (matchPair: match.Groups[1].Value, insertChar: match.Groups[2].Value);
             });
 
-           var c =  input.Select(x => new DoSomething(x.matchPair, x.insertChar)).ToList();
-
-
-            //
-            //var test = new List<(string matchPair, Action<string, string, int> action)>();
 
 
             foreach(var (matchPair, insertChar) in input)
             {
                 Test2.Add((matchPair, insertChar, new List<string> { matchPair[0] + insertChar, insertChar + matchPair[1] }));
-                    /*  var something = c.Single(x => x.Matchpairs.Equals(matchPair));
-                var res = something.CreatePairs(insertChar);
-                something.CreatedPairs.AddRange(c.Where(x => res.Contains(x.Matchpairs)));
 
-                Test.Add((matchPair, insertChar, (m, i, total) =>
-                {
-                    if(total > 0)
-                    {
-                        --total;
-                        ++SecondTwos.Single(x => x.Character == i[0]).Total;
-                        var l = Test.Single(x => x.matchPair == $"{m[0]}{i}");
-                        l.action(m, l.insertChar, total);
-
-                        l = Test.Single(x => x.matchPair == $"{i}{m[1]}");
-                        l.action(m, l.insertChar, total);
-                    }        
-                }
-                ));*/
             }
 
             SecondTwos = input.Select(x => x.insertChar).Distinct().Select(x => new SecondTwo { Character = x[0] }).ToList();
-            _fileInput = c.ToList();
+
         }
 
         private void DoSomething3(long total, List<FastObject> ll)
@@ -103,8 +80,6 @@ namespace DailyCode.Year2021.Days
                     {
                         found2.Total += pair.Total;
                     }
-
-                    //   t2.createdPairs
                     SecondTwos.Single(x => x.Character == t2.insertChar[0]).Total += pair.Total;
                 }
 
@@ -136,10 +111,7 @@ namespace DailyCode.Year2021.Days
             foreach(var p in SecondTwos)
             {
                 p.Total += _polymerTemplate.Count(x => x == p.Character);
-              //  p.Total += b.SingleOrDefault(x => x.Character == p.Character)?.Totals ?? 0;
             }
-            //_polymerTemplate.ToList().ForEach(x => b.Single(c => c.Character == x).Totals += 1);
-            //return (b.Max(x => x.Totals) - b.Min(x => x.Totals)).ToString();
             return (SecondTwos.Max(x => x.Total) - SecondTwos.Min(x => x.Total)).ToString();
         }
 
@@ -157,54 +129,8 @@ namespace DailyCode.Year2021.Days
             foreach (var p in SecondTwos)
             {
                 p.Total += _polymerTemplate.Count(x => x == p.Character);
-               // p.Total += b.SingleOrDefault(x => x.Character == p.Character)?.Totals ?? 0;
             }
-            //_polymerTemplate.ToList().ForEach(x => b.Single(c => c.Character == x).Totals += 1);
-            //return (b.Max(x => x.Totals) - b.Min(x => x.Totals)).ToString();
             return (SecondTwos.Max(x => x.Total) - SecondTwos.Min(x => x.Total)).ToString();
-        }
-    }
-
-    public class DoSomething
-    {
-        public string Matchpairs { get; set; } = string.Empty;
-
-        public string InsertChar { get; set; } = string.Empty;
-
-        public List<DoSomething> CreatedPairs { get; set; } = new();
-
-        public long Total { get; set; }
-
-        public DoSomething(string matchpairs, string insertChar)
-        {
-            Matchpairs = matchpairs;
-            InsertChar = insertChar;
-        }
-
-        public List<string> CreatePairs(string character)
-        {
-            var l = new List<string>
-            {
-                Matchpairs[0] + character,
-                character + Matchpairs[1]
-            };
-
-            return l;
-        }
-
-        public void SetTotal(long i)
-        {
-            if(i > 0)
-            {
-                --i;
-                 ++Total;
-                 CreatedPairs.ForEach(x => x.SetTotal(i));
-            }    
-        }
-
-        public (char character, long total) GetNeeded()
-        {
-            return (InsertChar[0], Total);
         }
     }
 
