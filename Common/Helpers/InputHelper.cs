@@ -1,5 +1,6 @@
 ﻿using Common.Models;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace Common.Helpers
 {
@@ -47,15 +48,18 @@ namespace Common.Helpers
 
         private async Task DownloadInput(string fileLocation, string sessionId, AdventConfig config)
         {
-            var baseAddress = new Uri($"https://adventofcode.com/{config.Year}/day/{config.Day}/input");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://adventofcode.com/{config.Year}/day/{config.Day}/input");
+            request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Email", "IceCow@gmail.com"));
+
             var fileInfo = new FileInfo(fileLocation);
 
             var cookieContainer = new CookieContainer();
-            cookieContainer.Add(baseAddress, new Cookie("session", sessionId));
+            cookieContainer.Add(request.RequestUri!, new Cookie("session", sessionId));
             using var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             using var client = new HttpClient(handler);
+     
 
-            var resp = await client.GetAsync(baseAddress);
+            var resp = await client.SendAsync(request);
             using var stream = await resp.Content.ReadAsStreamAsync();
 
             using var fileStream = fileInfo.OpenWrite();
