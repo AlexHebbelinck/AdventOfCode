@@ -31,7 +31,7 @@ namespace DailyCode.Year2021.Days
         private void CreateBiggerJaggedArray(int maxX, int maxY)
         {
             var xLength = _fileInput[0].Length;
-             for (int i = 1; i < maxX; i++)
+            for (int i = 1; i < maxX; i++)
             {
                 for (var y = 0; y < _fileInput.Length; y++)
                 {
@@ -41,7 +41,7 @@ namespace DailyCode.Year2021.Days
                         var amount = (_fileInput[y][x] + i);
                         o = o.Append(amount > 9 ? amount - 9 : amount).ToArray();
                     }
-                 _fileInput[y] = o;
+                    _fileInput[y] = o;
                 }
             }
 

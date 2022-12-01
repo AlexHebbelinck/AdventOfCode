@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2021.Days
 {
-
     public class FastObject
     {
         public string MatchPair { get; set; }
@@ -14,7 +13,7 @@ namespace DailyCode.Year2021.Days
     {
         private readonly Regex _inputRgx = new(@"(\w{2}) -> (\w{1})");
 
-       private List<SecondTwo> SecondTwos = new();
+        private List<SecondTwo> SecondTwos = new();
 
         private string _polymerTemplate = "";
 
@@ -35,16 +34,12 @@ namespace DailyCode.Year2021.Days
                 return (matchPair: match.Groups[1].Value, insertChar: match.Groups[2].Value);
             });
 
-
-
-            foreach(var (matchPair, insertChar) in input)
+            foreach (var (matchPair, insertChar) in input)
             {
                 Test2.Add((matchPair, insertChar, new List<string> { matchPair[0] + insertChar, insertChar + matchPair[1] }));
-
             }
 
             SecondTwos = input.Select(x => x.insertChar).Distinct().Select(x => new SecondTwo { Character = x[0] }).ToList();
-
         }
 
         private void DoSomething3(long total, List<FastObject> ll)
@@ -55,11 +50,10 @@ namespace DailyCode.Year2021.Days
 
                 var l = new List<FastObject>();
                 var pairs = ll.Where(x => x.Total > 0);
-               
 
-                foreach(var pair in pairs)
+                foreach (var pair in pairs)
                 {
-                   var t2 = Test2.Single(x => x.matchPair == pair.MatchPair);
+                    var t2 = Test2.Single(x => x.matchPair == pair.MatchPair);
                     var pair1 = t2.matchPair[0] + t2.insertChar;
                     var pair2 = t2.insertChar + t2.matchPair[1];
                     var found1 = l.FirstOrDefault(x => x.MatchPair == pair1);
@@ -84,15 +78,15 @@ namespace DailyCode.Year2021.Days
                 }
 
                 DoSomething3(total, l);
-                    }
-                }
+            }
+        }
 
         protected override string RunPart1()
         {
             var l = new List<FastObject>();
-            for (int i = 0; i < _polymerTemplate.Length -1 ; i++)
+            for (int i = 0; i < _polymerTemplate.Length - 1; i++)
             {
-                var matchPair = $"{_polymerTemplate[i]}{ _polymerTemplate[i + 1]}";
+                var matchPair = $"{_polymerTemplate[i]}{_polymerTemplate[i + 1]}";
                 var found = l.FirstOrDefault(x => x.MatchPair == matchPair);
                 if (found == null)
                 {
@@ -102,13 +96,11 @@ namespace DailyCode.Year2021.Days
                 {
                     found.Total += 1;
                 }
-                
             }
 
             DoSomething3(40, l);
 
-
-            foreach(var p in SecondTwos)
+            foreach (var p in SecondTwos)
             {
                 p.Total += _polymerTemplate.Count(x => x == p.Character);
             }
@@ -119,12 +111,10 @@ namespace DailyCode.Year2021.Days
         {
             for (int i = 0; i < _polymerTemplate.Length - 1; i++)
             {
-
-                var matchPair = $"{_polymerTemplate[i]}{ _polymerTemplate[i + 1]}";
+                var matchPair = $"{_polymerTemplate[i]}{_polymerTemplate[i + 1]}";
                 var l = Test.Single(x => matchPair.Equals(x.matchPair));
                 l.action(matchPair, l.insertChar, 10);
             }
-
 
             foreach (var p in SecondTwos)
             {
