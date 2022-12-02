@@ -49,7 +49,6 @@ namespace Common.Helpers
         private async Task DownloadInput(string fileLocation, string sessionId, AdventConfig config)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"https://adventofcode.com/{config.Year}/day/{config.Day}/input");
-            request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Email", "IceCow@gmail.com"));
 
             var fileInfo = new FileInfo(fileLocation);
 
@@ -57,7 +56,7 @@ namespace Common.Helpers
             cookieContainer.Add(request.RequestUri!, new Cookie("session", sessionId));
             using var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             using var client = new HttpClient(handler);
-     
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(".NET 7.0 (IceCow@gmail.com)");
 
             var resp = await client.SendAsync(request);
             using var stream = await resp.Content.ReadAsStreamAsync();

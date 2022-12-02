@@ -14,11 +14,11 @@ namespace DailyCode.Base
 
         public async Task<string> Run(AdventConfig config)
         {
-            var fileInput = config.UseTestData
+            var fileInputs = config.UseTestData
                 ? await InputHelper.Instance.GetTestData()
                 : await InputHelper.Instance.GetInputData(GetType().Name, _sessionId, config);
 
-            SetupData(fileInput);
+            SetupData(fileInputs);
 
             return config.Part switch
             {
@@ -28,7 +28,7 @@ namespace DailyCode.Base
             };
         }
 
-        protected abstract void SetupData(List<string> fileInput);
+        protected abstract void SetupData(List<string> fileInputs);
 
         protected abstract string RunPart1();
 
