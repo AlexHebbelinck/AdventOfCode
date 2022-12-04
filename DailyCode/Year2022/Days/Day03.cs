@@ -1,9 +1,4 @@
 ﻿using DailyCode.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DailyCode.Year2022.Days
 {
@@ -17,10 +12,11 @@ namespace DailyCode.Year2022.Days
 
         protected override void SetupData(List<string> fileInputs)
         {
-            foreach(var input in fileInputs)
+            foreach (var input in fileInputs)
             {
-                _rucksacks.Add((input.Substring(0, input.Length / 2).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
-                 input.Substring(input.Length / 2, input.Length / 2).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList()));
+                var rucksackHalfIndex = input.Length / 2;
+                _rucksacks.Add((input[..(rucksackHalfIndex)].Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
+                 input.Substring(rucksackHalfIndex, rucksackHalfIndex).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList()));
             }
         }
 
