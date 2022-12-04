@@ -16,7 +16,12 @@
 
         public int Start { get; init; }
         public int End { get; init; }
-
         public IEnumerable<int> CompleteSection { get; init; }
+
+        public bool FullyContains(Section otherSection)
+            => Start <= otherSection.Start && End >= otherSection.End;
+
+        public bool AnyOverlap(Section otherSection)
+            => CompleteSection.Any(currentValue => otherSection.CompleteSection.Contains(currentValue));
     }
 }

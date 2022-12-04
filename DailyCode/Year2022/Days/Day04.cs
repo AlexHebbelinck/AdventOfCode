@@ -22,11 +22,10 @@ namespace DailyCode.Year2022.Days
             });
 
         protected override string RunPart1()
-            => _inputs.Sum(input => Convert.ToInt32((input.section1.Start <= input.section2.Start && input.section1.End >= input.section2.End)
-                                                        || (input.section2.Start <= input.section1.Start && input.section2.End >= input.section1.End)))
+            => _inputs.Sum(input => Convert.ToInt32(input.section1.FullyContains(input.section2) || input.section2.FullyContains(input.section1)))
                .ToString();
 
         protected override string RunPart2()
-            => _inputs.Sum(input => Convert.ToInt32(input.section1.CompleteSection.Any(currentValue => input.section2.CompleteSection.Contains(currentValue)))).ToString();
+            => _inputs.Sum(input => Convert.ToInt32(input.section1.AnyOverlap(input.section2))).ToString();
     }
 }
