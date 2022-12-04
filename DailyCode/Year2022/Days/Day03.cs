@@ -27,9 +27,9 @@ namespace DailyCode.Year2022.Days
         protected override string RunPart1()
         {
             var result = 0;
-            foreach(var input in _l3)
+            foreach(var (l1, l2) in _l3)
             {
-                result+= input.l1.Intersect(input.l2).Sum();
+                result+= l1.Intersect(l2).Sum();
             }
 
             return result.ToString();
