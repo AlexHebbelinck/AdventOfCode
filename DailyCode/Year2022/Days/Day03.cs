@@ -21,11 +21,7 @@ namespace DailyCode.Year2022.Days
         }
 
         protected override string RunPart1()
-        {
-            var result = 0;
-            _rucksacks.ForEach(rucksack => result += rucksack.compartment1.Intersect(rucksack.compartment2).Sum());
-            return result.ToString();
-        }
+            => _rucksacks.Sum(rucksack => rucksack.compartment1.Intersect(rucksack.compartment2).Sum()).ToString();
 
         protected override string RunPart2()
         {

@@ -1,6 +1,6 @@
 ﻿namespace DailyCode.Year2022.Models
 {
-    internal class Section
+    internal sealed class Section
     {
         public Section(int start, int end)
         {
@@ -14,14 +14,14 @@
         {
         }
 
-        public int Start { get; init; }
-        public int End { get; init; }
-        public IEnumerable<int> CompleteSection { get; init; }
+        public int Start { get; private init; }
+        public int End { get; private init; }
+        public IEnumerable<int> CompleteSection { get; private init; }
 
         public bool FullyContains(Section otherSection)
             => Start <= otherSection.Start && End >= otherSection.End;
 
         public bool AnyOverlap(Section otherSection)
-            => CompleteSection.Any(currentValue => otherSection.CompleteSection.Contains(currentValue));
+            => !(Start > otherSection.End || End < otherSection.Start);
     }
 }
