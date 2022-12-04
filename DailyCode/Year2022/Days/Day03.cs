@@ -9,7 +9,7 @@ namespace DailyCode.Year2022.Days
 {
     internal class Day03 : BaseDay
     {
-        List<(List<int> l1, List<int> l2)> _l3 = new();
+        private readonly List<(List<int> compartment1, List<int> compartment2)> _rucksacks = new();
 
         public Day03(string sessionId) : base(sessionId)
         {
@@ -19,7 +19,7 @@ namespace DailyCode.Year2022.Days
         {
             foreach(var input in fileInputs)
             {
-                _l3.Add((input.Substring(0, input.Length / 2).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
+                _rucksacks.Add((input.Substring(0, input.Length / 2).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
                  input.Substring(input.Length / 2, input.Length / 2).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList()));
             }
         }
@@ -27,22 +27,18 @@ namespace DailyCode.Year2022.Days
         protected override string RunPart1()
         {
             var result = 0;
-            foreach(var (l1, l2) in _l3)
-            {
-                result+= l1.Intersect(l2).Sum();
-            }
-
+            _rucksacks.ForEach(rucksack => result += rucksack.compartment1.Intersect(rucksack.compartment2).Sum());
             return result.ToString();
         }
 
         protected override string RunPart2()
         {
-            var total = _l3.Count / 3;
+            var totalGroups = _rucksacks.Count / 3;
             var result = 0;
-            for (int i = 0; i < total; i++)
+            for (int i = 0; i < totalGroups; i++)
             {
-                var l4 = _l3.Skip(i * 3).Take(3).Select(x => x.l1.Concat(x.l2)).ToList();
-                result += l4[0].Intersect(l4[1]).Intersect(l4[2]).Sum();
+                var groupRucksacks = _rucksacks.Skip(i * 3).Take(3).Select(x => x.compartment1.Concat(x.compartment2)).ToList();
+                result += groupRucksacks[0].Intersect(groupRucksacks[1]).Intersect(groupRucksacks[2]).Sum();
             }
             return result.ToString();
         }
