@@ -22,7 +22,6 @@ namespace Common.Helpers
             const string? fileLocation = @"F:\Documents\AdventOfCode\TestData.txt";
             return (await File.ReadAllTextAsync(fileLocation))
                 .Split(new[] { '\n' })
-                .Select(i => i.Trim())
                 .ToList();
         }
 
@@ -36,7 +35,6 @@ namespace Common.Helpers
 
             var input = (await File.ReadAllTextAsync(fileLocation))
                 .Split(new[] { '\n' })
-                .Select(i => i.Trim())
                 .ToList();
 
             //Last entry is always empty...
