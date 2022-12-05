@@ -91,10 +91,7 @@ namespace DailyCode.Year2022.Days
         private string GetTopCratesForEachStack()
         {
             StringBuilder result = new();
-            foreach (var crateStack in _stackedCrates)
-            {
-                result.Append(crateStack.Peek());
-            }
+            _stackedCrates.ForEach(crateStack => result.Append(crateStack.Peek()));
 
             return result.ToString();
         }
