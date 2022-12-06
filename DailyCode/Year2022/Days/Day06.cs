@@ -1,4 +1,5 @@
 ﻿using DailyCode.Base;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2022.Days
@@ -12,22 +13,42 @@ namespace DailyCode.Year2022.Days
         }
 
         protected override void SetupData(List<string> fileInputs)
-        {
-            _fileInput = fileInputs[0];
-        }
+            => _fileInput = fileInputs[0];
 
         protected override string RunPart1()
+            => GetResult(4);
+
+        protected override string RunPart2()
+            => GetResult(14);
+
+        private string GetResult(int distinctCharacters)
         {
-            Regex rgx = new("(.)((?!\\1).)((?!\\1)(?!\\2).)((?!\\1)(?!\\2)(?!\\3).)");
-            var match = rgx.Match(_fileInput);
+            var match = CreateMarkerRegex(distinctCharacters).Match(_fileInput);
             return (match.Index + match.Length).ToString();
         }
 
-        protected override string RunPart2()
+        private static Regex CreateMarkerRegex(int distinctCharacters)
         {
-            Regex rgx = new("(.)(.)((?!\\1)(?!\\2).)((?!\\1)(?!\\2)(?!\\3).)((?!\\1)(?!\\2)(?!\\3)(?!\\4).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8)(?!\\9).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8)(?!\\9)(?!\\10).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8)(?!\\9)(?!\\10)(?!\\11).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8)(?!\\9)(?!\\10)(?!\\11)(?!\\12).)((?!\\1)(?!\\2)(?!\\3)(?!\\4)(?!\\5)(?!\\6)(?!\\7)(?!\\8)(?!\\9)(?!\\10)(?!\\11)(?!\\12)(?!\\13).)");
-            var match = rgx.Match(_fileInput);
-            return (match.Index + match.Length).ToString();
+            if (distinctCharacters <= 0) throw new ArgumentException("Yeah go sabotage yourself, why not...");
+
+            StringBuilder pattern = new();
+            for(int counter = 0; counter < distinctCharacters; counter++)
+            {
+                pattern.Append($"({CreateNegativeLookaheadPattern(counter)}.)");
+            }
+
+            return new(pattern.ToString());
+        }
+
+        private static StringBuilder CreateNegativeLookaheadPattern(int outerCounter)
+        {
+            StringBuilder pattern = new();
+            for (int innerCounter = 0; innerCounter < outerCounter; innerCounter++)
+            {
+                pattern.Append($"(?!\\{innerCounter + 1})");
+            }
+
+            return pattern;
         }
     }
 }
