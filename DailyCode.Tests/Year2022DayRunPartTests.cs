@@ -34,7 +34,9 @@ namespace DailyCode.Tests
                 new object[] { 4, 1, 305 },
                 new object[] { 4, 2, 811 },
                 new object[] { 5, 1, "TWSGQHNHL" },
-                new object[] { 5, 2, "JNRSCDWPP" }
+                new object[] { 5, 2, "JNRSCDWPP" },
+                new object[] { 6, 1, 1361 },
+                new object[] { 6, 2, 3263 }
             };
         }
     }
