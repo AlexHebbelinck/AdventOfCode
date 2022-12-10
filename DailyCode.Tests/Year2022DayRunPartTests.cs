@@ -38,7 +38,11 @@ namespace DailyCode.Tests
                 new object[] { 6, 1, 1361 },
                 new object[] { 6, 2, 3263 },
                 new object[] { 7, 1, 1182909 },
-                new object[] { 7, 2, 2832508 }
+                new object[] { 7, 2, 2832508 },
+                new object[] { 8, 1, 1733 },
+                new object[] { 8, 2, 284648 },
+                new object[] { 9, 1, 6494 },
+                new object[] { 9, 2, 2691 }
             };
         }
     }

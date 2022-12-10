@@ -16,6 +16,5 @@
 
         public override int GetHashCode()
             => Tuple.Create(PosX, PosY).GetHashCode();
-
     }
 }
