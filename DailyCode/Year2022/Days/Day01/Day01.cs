@@ -1,7 +1,7 @@
 ﻿using DailyCode.Base;
 using DailyCode.Year2022.Models;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Days.Day01
 {
     internal class Day01 : BaseDay
     {
