@@ -1,18 +1,17 @@
 ﻿using Common.Helpers;
-using Common.Models;
 
 namespace DailyCode.Year2021.Models
 {
     public class DijkstraHelper : BaseDijkstraHelper<int>
     {
-        public (int x, int y) StartingPos;
+        private (int x, int y) _startingPos;
 
         public DijkstraHelper((int x, int y) startingPos)
         {
-            StartingPos = startingPos;
+            _startingPos = startingPos;
         }
 
-        public override Node CreateNode(int x, int y, int sourceVal)
-            => new(x, y, x == StartingPos.x && y == StartingPos.y ? 0 : int.MaxValue);
+        protected override bool IsStartingPosition(int x, int y, int sourceVal)
+            => x == _startingPos.x && y == _startingPos.y;
     }
 }
