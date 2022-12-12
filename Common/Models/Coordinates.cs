@@ -1,4 +1,4 @@
-﻿namespace DailyCode.Year2021.Models
+﻿namespace DailyCode.Common.Models
 {
     public class Coordinates : IEquatable<Coordinates>
     {

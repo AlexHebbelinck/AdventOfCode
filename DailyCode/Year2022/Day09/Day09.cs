@@ -1,9 +1,7 @@
 ﻿using DailyCode.Base;
-using DailyCode.Year2021.Models;
-using DailyCode.Year2022.Models;
 using System.Text.RegularExpressions;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day09
 {
     internal class Day09 : BaseDay
     {

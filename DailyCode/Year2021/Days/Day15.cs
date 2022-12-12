@@ -1,4 +1,6 @@
-﻿using DailyCode.Base;
+﻿using Common.Models;
+using DailyCode.Base;
+using DailyCode.Year2021.Models;
 
 namespace DailyCode.Year2021.Days
 {
@@ -17,6 +19,7 @@ namespace DailyCode.Year2021.Days
 
         protected override string RunPart1()
         {
+            var dijkstraHelper = new DijkstraHelper((0, 0));
             var nodes = Dijkstra(_fileInput, (0, 0));
             return nodes.Single(node => node.PosX == _fileInput[0].Length - 1 && node.PosY == _fileInput.Length - 1).Cost.ToString();
         }
@@ -69,7 +72,7 @@ namespace DailyCode.Year2021.Days
             {
                 for (var x = 0; x < source[y].Length; x++)
                 {
-                    nodes.Add(new Node(x, y, x == startingPos.x && y == startingPos.x ? 0 : int.MaxValue));
+                    nodes.Add(new Node(x, y, x == startingPos.x && y == startingPos.y ? 0 : int.MaxValue));
                 }
             }
             DoSomething(source, nodes);
@@ -132,23 +135,6 @@ namespace DailyCode.Year2021.Days
             }
 
             return possibleTiles;
-        }
-    }
-
-    public class Node
-    {
-        public int PosX { get; set; }
-        public int PosY { get; set; }
-        public int Cost { get; set; }
-
-        public bool IsQueued { get; set; }
-        public bool IsVisitted { get; set; }
-
-        public Node(int posX, int posY, int cost)
-        {
-            PosX = posX;
-            PosY = posY;
-            Cost = cost;
         }
     }
 }

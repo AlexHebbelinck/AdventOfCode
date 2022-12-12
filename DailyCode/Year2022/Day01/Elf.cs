@@ -1,4 +1,4 @@
-﻿namespace DailyCode.Year2022.Days.Day01
+﻿namespace DailyCode.Year2022.Day01
 {
     internal class Elf
     {

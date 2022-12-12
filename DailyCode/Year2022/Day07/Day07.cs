@@ -1,13 +1,13 @@
 ﻿using DailyCode.Base;
 using System.Text.RegularExpressions;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day07
 {
     internal class Day07 : BaseDay
     {
         private readonly Regex cmdRgx = new("\\$ (\\w{2}) {0,1}(.*?)(?:\n|\r|$)");
 
-        private readonly List<Models.Directory> _directories = new();
+        private readonly List<Directory> _directories = new();
 
         public Day07(string sessionId) : base(sessionId)
         {
@@ -15,7 +15,7 @@ namespace DailyCode.Year2022.Days
 
         protected override void SetupData(List<string> fileInputs)
         {
-            var rootDirectory = new Models.Directory("/");
+            var rootDirectory = new Directory("/");
             _directories.Add(rootDirectory);
 
             var currentDirectory = rootDirectory;
@@ -37,7 +37,7 @@ namespace DailyCode.Year2022.Days
                         }
                         else if (match.Groups[2].Value.Any(x => char.IsLetter(x)))
                         {
-                            var directory = new Models.Directory(match.Groups[2].Value, currentDirectory);
+                            var directory = new Directory(match.Groups[2].Value, currentDirectory);
                             currentDirectory.SubDirectories.Add(directory);
                             _directories.Add(directory);
 
@@ -48,7 +48,7 @@ namespace DailyCode.Year2022.Days
                 else if (!input.StartsWith("dir"))
                 {
                     var commandSplitted = input.Split(' ');
-                    var file = new Models.File(commandSplitted[1], Convert.ToInt32(commandSplitted[0]));
+                    var file = new File(commandSplitted[1], Convert.ToInt32(commandSplitted[0]));
                     currentDirectory.Files.Add(file);
                 }
             }

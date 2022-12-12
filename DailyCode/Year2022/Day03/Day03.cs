@@ -1,6 +1,6 @@
 ﻿using DailyCode.Base;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day03
 {
     internal class Day03 : BaseDay
     {
@@ -15,7 +15,7 @@ namespace DailyCode.Year2022.Days
             foreach (var input in fileInputs)
             {
                 var rucksackHalfIndex = input.Length / 2;
-                _rucksacks.Add((input[..(rucksackHalfIndex)].Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
+                _rucksacks.Add((input[..rucksackHalfIndex].Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList(),
                  input.Substring(rucksackHalfIndex, rucksackHalfIndex).Select(x => char.IsUpper(x) ? x - 38 : x - 96).ToList()));
             }
         }

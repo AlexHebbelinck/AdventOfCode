@@ -1,7 +1,7 @@
 ﻿using DailyCode.Base;
 using System.Diagnostics.CodeAnalysis;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day02
 {
     internal class Day02 : BaseDay
     {
@@ -45,9 +45,9 @@ namespace DailyCode.Year2022.Days
             {
                 score += column2 switch
                 {
-                    'X' => 0 + (column1 == 'A' ? (column1 - 62) : (column1 - 65)),
+                    'X' => 0 + (column1 == 'A' ? column1 - 62 : column1 - 65),
                     'Y' => 3 + (column1 - 64),
-                    'Z' => 6 + (column1 == 'C' ? (column1 - 66) : (column1 - 63)),
+                    'Z' => 6 + (column1 == 'C' ? column1 - 66 : column1 - 63),
                     _ => 0,
                 };
             }

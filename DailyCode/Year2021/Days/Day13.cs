@@ -1,5 +1,5 @@
 ﻿using DailyCode.Base;
-using DailyCode.Year2021.Models;
+using DailyCode.Common.Models;
 
 namespace DailyCode.Year2021.Days
 {

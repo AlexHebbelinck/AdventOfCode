@@ -1,6 +1,6 @@
 ﻿using DailyCode.Base;
 
-namespace DailyCode.Year2022.Days.Day11
+namespace DailyCode.Year2022.Day11
 {
     internal class Day11 : BaseDay
     {
@@ -21,12 +21,12 @@ namespace DailyCode.Year2022.Days.Day11
                 var monkey = new Monkey
                 {
                     Id = monkeyId,
-                    Items = new Queue<ulong>(fileInputs[1 + (7 * monkeyId)].Split(':')[1].Split(',').Select(x => (ulong)Convert.ToInt64(x))),
-                    Operation = fileInputs[2 + (7 * monkeyId)].Split('=')[1].Trim(),
-                    TestDivider = (uint)Convert.ToInt32(fileInputs[3 + (7 * monkeyId)].Split(' ').Last())
+                    Items = new Queue<ulong>(fileInputs[1 + 7 * monkeyId].Split(':')[1].Split(',').Select(x => (ulong)Convert.ToInt64(x))),
+                    Operation = fileInputs[2 + 7 * monkeyId].Split('=')[1].Trim(),
+                    TestDivider = (uint)Convert.ToInt32(fileInputs[3 + 7 * monkeyId].Split(' ').Last())
                 };
-                var testTruthMonkeyId = Convert.ToInt32(fileInputs[4 + (7 * monkeyId)].Split(' ').Last());
-                var testFalsehMonkeyId = Convert.ToInt32(fileInputs[5 + (7 * monkeyId)].Split(' ').Last());
+                var testTruthMonkeyId = Convert.ToInt32(fileInputs[4 + 7 * monkeyId].Split(' ').Last());
+                var testFalsehMonkeyId = Convert.ToInt32(fileInputs[5 + 7 * monkeyId].Split(' ').Last());
 
                 testMonkeys.Add((monkeyId, testTruthMonkeyId, testFalsehMonkeyId));
                 _monkeys.Add(monkey);

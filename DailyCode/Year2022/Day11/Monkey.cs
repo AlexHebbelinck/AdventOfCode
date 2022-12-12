@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DailyCode.Year2022.Days.Day11
+namespace DailyCode.Year2022.Day11
 {
     public class Monkey
     {
@@ -29,13 +29,13 @@ namespace DailyCode.Year2022.Days.Day11
             {
                 var itemWorryLevel = Items.Dequeue();
                 if (itemWorryLevel > itemWorryLevelRoof)
-                    itemWorryLevel -= (itemWorryLevel / itemWorryLevelRoof) * itemWorryLevelRoof;
+                    itemWorryLevel -= itemWorryLevel / itemWorryLevelRoof * itemWorryLevelRoof;
 
                 itemWorryLevel = DoOperation(itemWorryLevel);
                 if (willGetBored)
                     itemWorryLevel = GetsBored(itemWorryLevel);
 
-                var passToMonkey = (itemWorryLevel % TestDivider) == 0 ? TestTruthMonkey : TestFalseMonkey;
+                var passToMonkey = itemWorryLevel % TestDivider == 0 ? TestTruthMonkey : TestFalseMonkey;
 
                 passToMonkey.Items.Enqueue(itemWorryLevel);
 

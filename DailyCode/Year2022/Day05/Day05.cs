@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day05
 {
     internal class Day05 : BaseDay
     {

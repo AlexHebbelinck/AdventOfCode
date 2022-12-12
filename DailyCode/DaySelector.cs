@@ -8,7 +8,7 @@ namespace DailyCode
     public sealed class DaySelector
     {
         private readonly Regex _numberRgx = new(@"\d+");
-        private readonly Regex _namespaceRgx = new(@"DailyCode\.Year\d{4}\.Days");
+        private readonly Regex _namespaceRgx = new(@"DailyCode\.Year\d{4}.Day.*");
 
         private readonly List<(Type type, int year, uint day)> _dayCollection = new();
 

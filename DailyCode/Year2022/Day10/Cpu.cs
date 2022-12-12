@@ -1,4 +1,4 @@
-﻿namespace DailyCode.Year2022.Days.Day10
+﻿namespace DailyCode.Year2022.Day10
 {
     public class Cpu
     {

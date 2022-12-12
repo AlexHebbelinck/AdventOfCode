@@ -1,6 +1,6 @@
-﻿using DailyCode.Year2021.Models;
+﻿using DailyCode.Common.Models;
 
-namespace DailyCode.Year2022.Models
+namespace DailyCode.Year2022.Day09
 {
     public class Rope
     {

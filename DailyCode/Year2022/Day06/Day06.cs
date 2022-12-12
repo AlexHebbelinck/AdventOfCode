@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DailyCode.Year2022.Days
+namespace DailyCode.Year2022.Day06
 {
     internal class Day06 : BaseDay
     {
@@ -32,7 +32,7 @@ namespace DailyCode.Year2022.Days
             if (distinctCharacters <= 0) throw new ArgumentException("Yeah go sabotage yourself, why not...");
 
             StringBuilder pattern = new();
-            for(int counter = 0; counter < distinctCharacters; counter++)
+            for (int counter = 0; counter < distinctCharacters; counter++)
             {
                 pattern.Append($"({CreateNegativeLookaheadPattern(counter)}.)");
             }
