@@ -19,7 +19,7 @@ namespace Common.Helpers
         public async Task<List<string>> GetTestData()
         {
             //Move to user secrets
-            const string? fileLocation = @"F:\Documents\AdventOfCode\TestData.txt";
+            const string? fileLocation = @"C:\Users\alehebbelinck\source\repos\AdventOfCode\TestData.txt";
             return (await File.ReadAllTextAsync(fileLocation))
                 .Split(new[] { '\n' })
                 .ToList();
@@ -28,7 +28,7 @@ namespace Common.Helpers
         public async Task<List<string>> GetInputData(string filename, string sessionId, AdventConfig config)
         {
             //Move to user secrets
-            var fileLocation = @$"F:\Documents\AdventOfCode\{config.Year}\{filename}.txt";
+            var fileLocation = @$"C:\Users\alehebbelinck\source\repos\AdventOfCode\{config.Year}\{filename}.txt";
 
             if (!File.Exists(fileLocation))
                 await DownloadInput(fileLocation, sessionId, config);
@@ -54,7 +54,7 @@ namespace Common.Helpers
             cookieContainer.Add(request.RequestUri!, new Cookie("session", sessionId));
             using var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             using var client = new HttpClient(handler);
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(".NET 7.0 (IceCow@gmail.com)");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(".NET 7.0 (AlexHebbelinck@gmail.com)");
 
             var resp = await client.SendAsync(request);
             using var stream = await resp.Content.ReadAsStreamAsync();

@@ -19,7 +19,7 @@ namespace Common.Helpers
             {
                 for (var x = 0; x < source[y].Length; x++)
                 {
-                    nodes.Add(new Node<TNodeVal>(x, y, IsStartingPosition(x, y, source[x][y]) ? 0 : int.MaxValue, CreateNodeValue(source[x][y])));
+                  //  nodes.Add(new Node<TNodeVal>(x, y, IsStartingPosition(x, y, source[x][y]) ? 0 : int.MaxValue, CreateNodeValue(source[x][y])));
                 }
             }
 
