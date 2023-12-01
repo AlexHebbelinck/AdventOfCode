@@ -22,7 +22,7 @@ namespace ConsoleApp.Commands
             var commandAdventConfigActions = new List<CommandAdventConfigAction>();
             if (!string.IsNullOrWhiteSpace(commands))
             {
-                foreach (Match match in AllCommandsRgx.Matches(commands))
+                foreach (Match match in AllCommandsRgx.Matches(commands).Cast<Match>())
                 {
                     var commandPrompt = CommandPrompt.FindBy(match.Groups[2].Value);
                     if (commandPrompt.IsExecuteAction)

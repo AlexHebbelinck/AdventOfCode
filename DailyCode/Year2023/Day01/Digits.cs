@@ -1,4 +1,6 @@
-﻿namespace DailyCode.Year2023.Day01
+﻿using DailyCode.Year2023.Day01;
+
+namespace DailyCode.Year2023.Day01
 {
     public enum Digits
     {
@@ -16,20 +18,10 @@
 
     public static class DigitsHelper
     {
-        public static string ConvertDigitToInt(string text)
-        {
-            foreach (var digit in GetList())
-            {
-                text = text.Replace(digit.Key, digit.Value.ToString(), StringComparison.CurrentCultureIgnoreCase);
-            }
-            return text;
-        }
-
-        public static Dictionary<string, int> GetList()
-            => new()
-            {
-                { nameof(Digits.Zero), (int)Digits.Zero },
-                { nameof(Digits.One), (int)Digits.One },
+        public static Dictionary<string, int> DigitList
+            => new() {
+                { nameof(Digits.Zero), (int) Digits.Zero },
+                { nameof(Digits.One), (int) Digits.One },
                 { nameof(Digits.Two), (int)Digits.Two },
                 { nameof(Digits.Three), (int)Digits.Three },
                 { nameof(Digits.Four), (int)Digits.Four },
@@ -39,5 +31,14 @@
                 { nameof(Digits.Eight), (int)Digits.Eight },
                 { nameof(Digits.Nine), (int)Digits.Nine },
             };
+
+        public static string ConvertDigitToInt(string text)
+        {
+            foreach (var digit in DigitList)
+            {
+                text = text.Replace(digit.Key, digit.Value.ToString(), StringComparison.CurrentCultureIgnoreCase);
+            }
+            return text;
+        }
     }
 }

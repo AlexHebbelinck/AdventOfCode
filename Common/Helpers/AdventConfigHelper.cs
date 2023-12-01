@@ -7,7 +7,7 @@ namespace Common.Helpers
     {
         public static AdventConfigHelper Instance { get; } = new();
 
-        private readonly string _filePath = @"C:\Users\alehebbelinck\source\repos\AdventOfCode\config.cfg";
+        private readonly string _filePath = @"..\..\..\..\Assets\config.cfg";
         private readonly int _year = YearHelper.Instance.GetAoCYear();
 
         static AdventConfigHelper()

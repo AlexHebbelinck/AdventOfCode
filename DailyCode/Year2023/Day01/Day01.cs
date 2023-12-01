@@ -3,13 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2023.Day01
 {
-    public class Day01 : BaseDay
+    public class Day01(string sessionId) : BaseDay(sessionId)
     {
-        private List<string> _calibrationInputs = new();
-
-        public Day01(string sessionId) : base(sessionId)
-        {
-        }
+        private List<string> _calibrationInputs = [];
 
         protected override void SetupData(List<string> fileInputs)
             => _calibrationInputs = fileInputs.ConvertAll(x => x.Trim('\r'));
@@ -32,7 +28,7 @@ namespace DailyCode.Year2023.Day01
 
             static string FindFirstAndLastDigit(string text)
             {
-                var aggregatedDigits = DigitsHelper.GetList().Select(x => x.Key).Aggregate((curr, next) => $"{curr}|{next}");
+                var aggregatedDigits = DigitsHelper.DigitList.Select(x => x.Key).Aggregate((curr, next) => $"{curr}|{next}");
                 var rgx = new Regex($"(?:^.*?(?<FirstValue>{aggregatedDigits}|\\d).*(?<LastValue>{aggregatedDigits}|\\d)(?!({aggregatedDigits}|\\d)).*?$)|(?:^.*?(?<OnlyValue>{aggregatedDigits}|\\d)(?!({aggregatedDigits}|\\d)).*?$)", RegexOptions.IgnoreCase);
 
                 GroupCollection groups = rgx.Match(text).Groups;

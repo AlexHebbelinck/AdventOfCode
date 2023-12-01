@@ -15,7 +15,7 @@ namespace DailyCode.Base
         public async Task<string> Run(AdventConfig config)
         {
             var fileInputs = config.UseTestData
-                ? await InputHelper.Instance.GetTestData()
+                ? await InputHelper.GetTestData()
                 : await InputHelper.Instance.GetInputData(GetType().Name, _sessionId, config);
 
             SetupData(fileInputs);

@@ -1,6 +1,8 @@
 ﻿using Common.Models;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Common.Helpers
 {
@@ -16,25 +18,28 @@ namespace Common.Helpers
         {
         }
 
-        public async Task<List<string>> GetTestData()
+        public static async Task<List<string>> GetTestData()
         {
             //Move to user secrets
-            const string? fileLocation = @"C:\Users\alehebbelinck\source\repos\AdventOfCode\TestData.txt";
-            return (await File.ReadAllTextAsync(fileLocation))
-                .Split(new[] { '\n' })
-                .ToList();
+            const string? fileLocation = @"..\..\..\..\Assets\TestData.txt";
+            return
+            [
+                .. (await File.ReadAllTextAsync(fileLocation))
+                                .Split(['\n'])
+            ];
         }
 
         public async Task<List<string>> GetInputData(string filename, string sessionId, AdventConfig config)
         {
-            //Move to user secrets
-            var fileLocation = @$"C:\Users\alehebbelinck\source\repos\AdventOfCode\{config.Year}\{filename}.txt";
+            var c = Directory.GetCurrentDirectory();
+             //Move to user secrets
+             var fileLocation = @$"..\..\..\..\Assets\{config.Year}\{filename}.txt";
 
             if (!File.Exists(fileLocation))
                 await DownloadInput(fileLocation, sessionId, config);
 
             var input = (await File.ReadAllTextAsync(fileLocation))
-                .Split(new[] { '\n' })
+                .Split(['\n'])
                 .ToList();
 
             //Last entry is always empty...
@@ -44,7 +49,7 @@ namespace Common.Helpers
             return input;
         }
 
-        private async Task DownloadInput(string fileLocation, string sessionId, AdventConfig config)
+        private static async Task DownloadInput(string fileLocation, string sessionId, AdventConfig config)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"https://adventofcode.com/{config.Year}/day/{config.Day}/input");
 
@@ -54,7 +59,7 @@ namespace Common.Helpers
             cookieContainer.Add(request.RequestUri!, new Cookie("session", sessionId));
             using var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             using var client = new HttpClient(handler);
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(".NET 7.0 (AlexHebbelinck@gmail.com)");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(".NET 8.0 (AlexHebbelinck@gmail.com)");
 
             var resp = await client.SendAsync(request);
             using var stream = await resp.Content.ReadAsStreamAsync();

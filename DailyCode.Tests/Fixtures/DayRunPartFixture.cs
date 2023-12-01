@@ -13,7 +13,7 @@ namespace DailyCode.Tests.Fixtures
     public class DayRunPartFixture
     {
         private readonly Regex _numberRgx = new(@"\d+");
-        private readonly Regex _namespaceRgx = new(@"DailyCode\.Year\d{4}\.Days");
+        private readonly Regex _namespaceRgx = new(@"DailyCode\.Year\d{4}\.Day.*");
 
         public List<DailyCodeMethods> DailyCodeMethods { get; set; } = new();
 
@@ -45,7 +45,7 @@ namespace DailyCode.Tests.Fixtures
 
             if (Activator.CreateInstance(model.Type, string.Empty) is BaseDay classInstance)
             {
-                var input = InputHelper.Instance.GetInputData(model.Type.Name, string.Empty, new AdventConfig()).Result;
+                var input = InputHelper.Instance.GetInputData(model.Type.Name, string.Empty, new AdventConfig { Day = day, Part = part, Year = year }).Result;
 
                 var extractDataMethod = model.Type.GetMethod("SetupData", BindingFlags.Instance | BindingFlags.NonPublic);
                 extractDataMethod?.Invoke(classInstance, new object[] { input });
