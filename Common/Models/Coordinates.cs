@@ -21,9 +21,12 @@
         {
             if(coordinates.Equals(this)) return false;
 
-            return ((coordinates.PosX + 1 == PosX || coordinates.PosX - 1 == PosX || coordinates.PosX == PosX)
-                && (coordinates.PosY + 1 == PosY || coordinates.PosY - 1 == PosY || coordinates.PosY == PosY))
+            return ((IsAdjacent(PosX, coordinates.PosX))
+                && (IsAdjacent(PosY, coordinates.PosY)))
                 && (allowDiagonal || !(coordinates.PosX != PosX && coordinates.PosY != PosY));
         }
+
+        private bool IsAdjacent(int currentPos, int comparePos)
+            => comparePos + 1 == currentPos || comparePos - 1 == currentPos || comparePos == currentPos;
     }
 }

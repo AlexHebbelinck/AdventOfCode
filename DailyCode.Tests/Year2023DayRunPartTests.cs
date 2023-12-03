@@ -21,7 +21,11 @@ namespace DailyCode.Tests
             return new List<object[]>
             {
                 new object[] { 1, 1, 55172 },
-                new object[] { 1, 2, 54925 }
+                new object[] { 1, 2, 54925 },
+                new object[] { 2, 1, 2416 },
+                new object[] { 2, 2, 63307 },
+                new object[] { 3, 1, 527369 },
+                new object[] { 3, 2, 73074886 }
             };
         }
     }
