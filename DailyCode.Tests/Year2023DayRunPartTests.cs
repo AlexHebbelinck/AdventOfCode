@@ -25,7 +25,9 @@ namespace DailyCode.Tests
                 new object[] { 2, 1, 2416 },
                 new object[] { 2, 2, 63307 },
                 new object[] { 3, 1, 527369 },
-                new object[] { 3, 2, 73074886 }
+                new object[] { 3, 2, 73074886 },
+                new object[] { 4, 1, 33950 },
+                new object[] { 4, 2, 14814534 }
             };
         }
     }
