@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2023.Day06
 {
+    //Note: Could be done with quadratic equation
     public class Day06(string sessionId) : BaseDay(sessionId)
     {
         private List<RaceData> _races = null!;
