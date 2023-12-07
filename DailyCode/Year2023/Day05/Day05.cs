@@ -35,9 +35,7 @@ namespace DailyCode.Year2023.Day05
         }
 
         protected override string RunPart1()
-        {
-            return _seeds.Min(seed => _mapBluePrintsPerTypes[0].Map(seed)).ToString();
-        }
+            => _seeds.Min(seed => _mapBluePrintsPerTypes[0].Map(seed)).ToString();
 
         protected override string RunPart2()
             => _mapBluePrintsPerTypes[0].Map(GetSeedRanges()).Min(x => x.Start).ToString();
