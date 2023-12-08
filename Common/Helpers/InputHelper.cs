@@ -1,8 +1,5 @@
 ﻿using Common.Models;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Common.Helpers
 {
