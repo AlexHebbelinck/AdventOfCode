@@ -1,5 +1,4 @@
-﻿
-namespace Common.Helpers
+﻿namespace Common.Helpers
 {
     public static class MathHelper
     {
@@ -35,6 +34,32 @@ namespace Common.Helpers
                 lcm = LCM(lcm, numbers[i]);
             }
             return lcm;
+        }
+
+        public static long PredictNextNumber(long[] sequence)
+        {
+            List<List<long>> sequences = [[.. sequence]];
+
+            do
+            {
+                var sequenceToCheck = sequences[^1];
+                var differences = new long[sequenceToCheck.Count - 1];
+                for (int i = 1; i < sequenceToCheck.Count; i++)
+                {
+                    differences[i - 1] = sequenceToCheck[i] - sequenceToCheck[i - 1];
+                }
+
+                sequences.Add([.. differences]);
+            }
+            while (!sequences[^1].TrueForAll(x => x == 0));
+
+
+            for(int i = sequences.Count - 2; i >= 0; i--)
+            {
+                sequences[i].Add(sequences[i][^1] + sequences[i + 1][^1]);
+            }
+
+            return sequences[0][^1];
         }
     }
 }
