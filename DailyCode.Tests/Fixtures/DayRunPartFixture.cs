@@ -2,8 +2,11 @@
 using Common.Models;
 using DailyCode.Base;
 using DailyCode.Tests.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -40,12 +43,16 @@ namespace DailyCode.Tests.Fixtures
 
         public string RunPart(int year, uint day, uint part)
         {
+            var configuration = new ConfigurationBuilder()
+              .AddUserSecrets<DayRunPartFixture>()
+              .Build();
+
             var model = DailyCodeMethods.Find(x => x.Year == year && x.Day == day);
             if (model == null || model.Type == null) throw new ArgumentException("Day doesn't exist for chosen year.");
 
             if (Activator.CreateInstance(model.Type, string.Empty) is BaseDay classInstance)
             {
-                var input = InputHelper.Instance.GetInputData(model.Type.Name, string.Empty, new AdventConfig { Day = day, Part = part, Year = year }).Result;
+                var input = InputHelper.Instance.GetInputData(model.Type.Name, configuration.GetSection("sessionId").Value, new AdventConfig { Day = day, Part = part, Year = year }).Result;
 
                 var extractDataMethod = model.Type.GetMethod("SetupData", BindingFlags.Instance | BindingFlags.NonPublic);
                 extractDataMethod?.Invoke(classInstance, new object[] { input });
