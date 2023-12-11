@@ -1,5 +1,6 @@
 ﻿using DailyCode.Base;
 using DailyCode.Year2023.Day07.Models;
+using Common.Models;
 
 namespace DailyCode.Year2023.Day07
 {
@@ -7,7 +8,7 @@ namespace DailyCode.Year2023.Day07
     {
         private IEnumerable<CamelCardsMatch> _matches = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             _matches = fileInputs.Select(x =>
             {

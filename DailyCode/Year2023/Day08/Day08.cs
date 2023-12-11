@@ -1,28 +1,28 @@
 ﻿using Common.Helpers;
 using DailyCode.Base;
 using DailyCode.Year2023.Day08.Models;
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Common.Models;
+using DayModels =DailyCode.Year2023.Day08.Models;
 
 namespace DailyCode.Year2023.Day08
 {
     public class Day08(string sessionId) : BaseDay(sessionId)
     {
         private char[] _instructions;
-        private List<Node> _nodes;
+        private List<DayModels.Node> _nodes;
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             var rgx = new Regex("(\\w{3}) = \\((\\w{3}), (\\w{3})\\)");
 
             _instructions = fileInputs[0].Trim('\r').ToCharArray();
 
-            List<Node> nodes = [];
+            List<DayModels.Node> nodes = [];
             foreach (var fileInput in fileInputs.Skip(1).Select(x => x.Trim('\r')).Where(x => !string.IsNullOrEmpty(x)))
             {
                 var match = rgx.Match(fileInput);
-                nodes.Add(new Node(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value));
+                nodes.Add(new DayModels.Node(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value));
             }
 
             _nodes = nodes;

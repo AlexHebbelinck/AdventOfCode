@@ -36,7 +36,7 @@
             return lcm;
         }
 
-        public static long PredictNextNumber(long[] sequence)
+        public static long Extrapolate(long[] sequence)
         {
             List<List<long>> sequences = [[.. sequence]];
 

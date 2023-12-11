@@ -1,6 +1,7 @@
 ﻿using DailyCode.Base;
 using System.Text;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day06
 {
@@ -12,7 +13,7 @@ namespace DailyCode.Year2022.Day06
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _fileInput = fileInputs[0];
 
         protected override string RunPart1()

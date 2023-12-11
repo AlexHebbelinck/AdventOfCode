@@ -1,4 +1,5 @@
 ﻿using DailyCode.Base;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day11
 {
@@ -10,7 +11,7 @@ namespace DailyCode.Year2022.Day11
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             List<(int monkeyId, int testTruthMonkeyId, int testFalseMonkeyId)> testMonkeys = new();
 

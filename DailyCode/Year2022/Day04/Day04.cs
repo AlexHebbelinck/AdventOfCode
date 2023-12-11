@@ -1,5 +1,6 @@
 ﻿using DailyCode.Base;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day04
 {
@@ -13,7 +14,7 @@ namespace DailyCode.Year2022.Day04
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _inputs = fileInputs.ConvertAll(fileInput =>
             {
                 var match = _fileInputRgx.Match(fileInput);

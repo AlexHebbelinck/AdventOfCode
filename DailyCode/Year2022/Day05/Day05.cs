@@ -1,6 +1,7 @@
 ﻿using DailyCode.Base;
 using System.Text;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day05
 {
@@ -16,12 +17,12 @@ namespace DailyCode.Year2022.Day05
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             ExtractCrates(fileInputs);
             ExtractInstructions(fileInputs);
 
-            void ExtractCrates(List<string> fileInputs)
+            void ExtractCrates(FileInputCollection fileInputs)
             {
                 List<List<char>> extractedCrates = new();
                 foreach (var fileInput in fileInputs)
@@ -42,7 +43,7 @@ namespace DailyCode.Year2022.Day05
                 _stackedCrates = extractedCrates.ConvertAll(charList => { charList.Reverse(); return new Stack<char>(charList); });
             }
 
-            void ExtractInstructions(List<string> fileInputs)
+            void ExtractInstructions(FileInputCollection fileInputs)
             {
                 List<(int move, int from, int to)> extractedInstructions = new();
                 foreach (var fileInput in fileInputs)

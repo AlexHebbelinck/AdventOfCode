@@ -28,7 +28,7 @@ namespace DailyCode.Base
             };
         }
 
-        protected abstract void SetupData(List<string> fileInputs);
+        protected abstract void SetupData(FileInputCollection fileInputs);
 
         protected abstract string RunPart1();
 

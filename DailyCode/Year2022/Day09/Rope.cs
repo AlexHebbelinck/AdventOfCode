@@ -1,4 +1,4 @@
-﻿using DailyCode.Common.Models;
+﻿using Common.Models;
 
 namespace DailyCode.Year2022.Day09
 {

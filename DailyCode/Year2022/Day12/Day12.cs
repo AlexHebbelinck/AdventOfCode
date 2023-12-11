@@ -1,6 +1,7 @@
 ﻿using Common.Extensions;
 using Common.Models;
 using DailyCode.Base;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day12
 {
@@ -11,7 +12,7 @@ namespace DailyCode.Year2022.Day12
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _inputs = fileInputs.ToJaggedArray<char>();
 
         protected override string RunPart1()

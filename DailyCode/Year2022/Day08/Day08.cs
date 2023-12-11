@@ -1,5 +1,6 @@
 ﻿using Common.Extensions;
 using DailyCode.Base;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day08
 {
@@ -11,7 +12,7 @@ namespace DailyCode.Year2022.Day08
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _trees = fileInputs.ConvertAll(x => x.Trim()).Select(line => line.Select(letter => new Tree(int.Parse(letter.ToString()))).ToArray()).ToArray();
 
         protected override string RunPart1()

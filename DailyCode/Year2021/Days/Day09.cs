@@ -1,5 +1,6 @@
 ﻿using Common.Extensions;
 using DailyCode.Base;
+using Common.Models;
 
 namespace DailyCode.Year2021.Days
 {
@@ -11,7 +12,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void SetupData(List<string> fileInput)
+        protected override void SetupData(FileInputCollection fileInput)
             => _fileInput = fileInput.Select(x => x.Select(letter => int.Parse(letter.ToString())).ToArray()).ToArray();
 
         protected override string RunPart1()

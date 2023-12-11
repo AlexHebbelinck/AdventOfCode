@@ -1,5 +1,5 @@
-﻿using DailyCode.Base;
-using System.Drawing;
+﻿using Common.Models;
+using DailyCode.Base;
 using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2023.Day02
@@ -8,7 +8,7 @@ namespace DailyCode.Year2023.Day02
     {
         private readonly List<Game> _games = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             var gameRgx = new Regex("Game (?<GameId>\\d*):");
             var subsetRgx = new Regex("\\d+ .*?(?=;|$)");

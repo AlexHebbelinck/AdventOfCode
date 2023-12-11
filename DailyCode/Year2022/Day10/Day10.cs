@@ -1,4 +1,5 @@
 ﻿using DailyCode.Base;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day10
 {
@@ -10,7 +11,7 @@ namespace DailyCode.Year2022.Day10
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => fileInputs.ForEach(_cpu.DoInstruction);
 
         protected override string RunPart1()

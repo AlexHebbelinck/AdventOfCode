@@ -2,9 +2,6 @@
 {
     public static class JaggedArrayExtensions
     {
-        public static T[][] ToJaggedArray<T>(this List<string> inputs)
-            => inputs.Select(x => x.Select(c => (T)Convert.ChangeType(c.ToString(), typeof(T))).ToArray()).ToArray();
-
         public static List<T> Flatten<T>(this T[][] source)
             => source.SelectMany(a => a).ToList();
 

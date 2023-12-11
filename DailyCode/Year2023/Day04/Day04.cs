@@ -1,5 +1,6 @@
 ﻿using DailyCode.Base;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2023.Day04
 {
@@ -13,7 +14,7 @@ namespace DailyCode.Year2023.Day04
 
         private List<string> _scratchcards = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             Regex rgx = GameExtractionRgx();
             _scratchcards = fileInputs

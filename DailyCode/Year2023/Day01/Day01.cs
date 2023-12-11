@@ -1,4 +1,5 @@
-﻿using DailyCode.Base;
+﻿using Common.Models;
+using DailyCode.Base;
 using System.Text.RegularExpressions;
 
 namespace DailyCode.Year2023.Day01
@@ -7,7 +8,7 @@ namespace DailyCode.Year2023.Day01
     {
         private List<string> _calibrationInputs = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _calibrationInputs = fileInputs.ConvertAll(x => x.Trim('\r'));
 
         protected override string RunPart1()

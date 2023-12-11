@@ -15,7 +15,7 @@ namespace Common.Helpers
         {
         }
 
-        public static async Task<List<string>> GetTestData()
+        public static async Task<FileInputCollection> GetTestData()
         {
             //Move to user secrets
             const string? fileLocation = @"..\..\..\..\Assets\TestData.txt";
@@ -26,18 +26,19 @@ namespace Common.Helpers
             ];
         }
 
-        public async Task<List<string>> GetInputData(string filename, string sessionId, AdventConfig config)
+        public async Task<FileInputCollection> GetInputData(string filename, string sessionId, AdventConfig config)
         {
-            var c = Directory.GetCurrentDirectory();
              //Move to user secrets
              var fileLocation = @$"..\..\..\..\Assets\{config.Year}\{filename}.txt";
 
             if (!File.Exists(fileLocation))
                 await DownloadInput(fileLocation, sessionId, config);
 
-            var input = (await File.ReadAllTextAsync(fileLocation))
-                .Split(['\n'])
-                .ToList();
+            FileInputCollection input =
+            [
+                .. (await File.ReadAllTextAsync(fileLocation))
+                                .Split(['\n'])
+            ];
 
             //Last entry is always empty...
             if(string.IsNullOrWhiteSpace(input.Last()))

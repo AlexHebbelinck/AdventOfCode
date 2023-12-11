@@ -1,6 +1,6 @@
 ﻿using DailyCode.Base;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2023.Day05
 {
@@ -9,7 +9,7 @@ namespace DailyCode.Year2023.Day05
         private List<long> _seeds = null!;
         private readonly List<MapBluePrintsPerType> _mapBluePrintsPerTypes = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             var rgx = new Regex("(\\d+)");
             _seeds = rgx.Matches(fileInputs[0]).Select(x => long.Parse(x.Value)).ToList();

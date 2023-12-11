@@ -1,5 +1,5 @@
 ﻿using DailyCode.Base;
-using System.Diagnostics.CodeAnalysis;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day02
 {
@@ -11,7 +11,7 @@ namespace DailyCode.Year2022.Day02
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
             => _fileInputs = fileInputs.Select(x => { string[] lineInputs = x.Split(' '); return (char.Parse(lineInputs[0]), char.Parse(lineInputs[1])); });
 
         protected override string RunPart1()

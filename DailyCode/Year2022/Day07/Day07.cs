@@ -1,5 +1,6 @@
 ﻿using DailyCode.Base;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2022.Day07
 {
@@ -13,7 +14,7 @@ namespace DailyCode.Year2022.Day07
         {
         }
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             var rootDirectory = new Directory("/");
             _directories.Add(rootDirectory);

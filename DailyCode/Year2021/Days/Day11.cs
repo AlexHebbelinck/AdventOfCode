@@ -1,6 +1,7 @@
 ﻿using Common.Extensions;
 using DailyCode.Base;
 using DailyCode.Year2021.Models;
+using Common.Models;
 
 namespace DailyCode.Year2021.Days
 {
@@ -12,7 +13,7 @@ namespace DailyCode.Year2021.Days
         {
         }
 
-        protected override void SetupData(List<string> fileInput)
+        protected override void SetupData(FileInputCollection fileInput)
         {
             _dumboOctopi = fileInput.Select(line => line.Select(letter => new DumboOctopus(int.Parse(letter.ToString()))).ToArray()).ToArray();
             for (int y = 0; y < _dumboOctopi.Length; y++)

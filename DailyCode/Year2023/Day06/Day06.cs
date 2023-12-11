@@ -1,5 +1,6 @@
 ﻿using DailyCode.Base;
 using System.Text.RegularExpressions;
+using Common.Models;
 
 namespace DailyCode.Year2023.Day06
 {
@@ -8,7 +9,7 @@ namespace DailyCode.Year2023.Day06
     {
         private List<RaceData> _races = null!;
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
             var rgx = new Regex("(\\d+)");
             var distances = rgx.Matches(fileInputs[1]).Select(x => long.Parse(x.Value)).ToArray();

@@ -1,4 +1,4 @@
-﻿namespace DailyCode.Common.Models
+﻿namespace Common.Models
 {
     public class Coordinates : IEquatable<Coordinates>
     {

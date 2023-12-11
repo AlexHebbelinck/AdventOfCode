@@ -1,5 +1,5 @@
 ﻿using DailyCode.Base;
-using DailyCode.Common.Models;
+using Common.Models;
 
 namespace DailyCode.Year2023.Day03
 {
@@ -8,21 +8,21 @@ namespace DailyCode.Year2023.Day03
         private readonly List<Number> _numbers = [];
         private readonly List<Symbol> _symbols = [];
 
-        protected override void SetupData(List<string> fileInputs)
+        protected override void SetupData(FileInputCollection fileInputs)
         {
-            fileInputs = fileInputs.ConvertAll(x => x.Trim('\r'));
+            var convertedFileInputs = fileInputs.ConvertAll(x => x.Trim('\r'));
 
-            for (int y = 0; y < fileInputs.Count; y++)
+            for (int y = 0; y < convertedFileInputs.Count; y++)
             {
                 string partialNumber = string.Empty;
-                for (int x = 0; x < fileInputs[y].Length; x++)
+                for (int x = 0; x < convertedFileInputs[y].Length; x++)
                 {
-                    var character = fileInputs[y][x];
+                    var character = convertedFileInputs[y][x];
                     if (char.IsDigit(character))
                     {
                         partialNumber += character;
 
-                        if (x + 1 == fileInputs[y].Length)
+                        if (x + 1 == convertedFileInputs[y].Length)
                         {
                             _numbers.Add(new Number
                             {
@@ -32,6 +32,7 @@ namespace DailyCode.Year2023.Day03
                             });
                         }
                     }
+
                     else
                     {
                         if (!string.IsNullOrEmpty(partialNumber))
